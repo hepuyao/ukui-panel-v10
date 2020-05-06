@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=ukui-panel
+comment=Panel
+Comment[zh_CN]=任务栏
+Exec=ukui-panel
+Terminal=false
+Type=Application
+Icon=panel
+X-UKUI-AutoRestart=true
+OnlyShowIn=UKUI
+X-UKUI-Autostart-Phase=Initialization
