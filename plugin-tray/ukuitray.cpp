@@ -500,8 +500,10 @@ void UKUITray::clientMessageEvent(xcb_generic_event_t *e)
  ************************************************/
 TrayIcon* UKUITray::findIcon(Window id)
 {
-    for(TrayIcon* icon : qAsConst(mIcons) )
+    //for(TrayIcon* icon : qAsConst(mIcons) )
+    for(int i=0;i<mIcons.size();i++)
     {
+        TrayIcon *icon=mIcons[i];
         if (icon->iconId() == id || icon->windowId() == id)
             return icon;
     }
@@ -510,8 +512,10 @@ TrayIcon* UKUITray::findIcon(Window id)
 
 TrayIcon* UKUITray::findTrayIcon(Window id)
 {
-    for(TrayIcon* trayicon : qAsConst(mTrayIcons) )
+    //for(TrayIcon* trayicon : qAsConst(mTrayIcons) )
+    for(int i=0;i<mTrayIcons.size();i++)
     {
+	TrayIcon *trayicon = mTrayIcons[i];
         if (trayicon->iconId() == id || trayicon->windowId() == id)
             return trayicon;
     }
@@ -520,8 +524,10 @@ TrayIcon* UKUITray::findTrayIcon(Window id)
 
 TrayIcon* UKUITray::findStorageIcon(Window id)
 {
-    for(TrayIcon* storageicon :qAsConst(mStorageIcons))
+    //for(TrayIcon* storageicon :qAsConst(mStorageIcons))
+    for(int i=0;i<mStorageIcons.size();i++)
     {
+	TrayIcon *storageicon=mStorageIcons[i];
         if (storageicon->iconId() == id || storageicon->windowId() == id)
             return storageicon;
     }
@@ -530,8 +536,10 @@ TrayIcon* UKUITray::findStorageIcon(Window id)
 
 TrayIcon* UKUITray::findHideIcon(Window id)
 {
-    for(TrayIcon* hideicon :qAsConst(mHideIcons))
+    //for(TrayIcon* hideicon :qAsConst(mHideIcons))
+    for(int i=0;i<mHideIcons.size();i++)
     {
+	TrayIcon* hideicon=mHideIcons[i];
         if (hideicon->iconId() == id || hideicon->windowId() == id)
             return hideicon;
     }

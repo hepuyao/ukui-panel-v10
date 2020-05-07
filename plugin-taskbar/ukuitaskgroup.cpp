@@ -210,9 +210,13 @@ void UKUITaskGroup::contextMenuEvent(QContextMenuEvent *event)
 void UKUITaskGroup::closeGroup()
 {
     //To Do
-    for (UKUITaskWidget *button : qAsConst(mButtonHash) )
-        if (button->isOnDesktop(KWindowSystem::currentDesktop()))
+    //for (UKUITaskWidget *button : qAsConst(mButtonHash) )
+    for(auto it=mButtonHash.begin();it!=mButtonHash.end();it++)
+    {  
+    UKUITaskWidget *button =it.value();
+  if (button->isOnDesktop(KWindowSystem::currentDesktop()))
             button->closeApplication();
+    }
 }
 
 /************************************************
@@ -405,9 +409,13 @@ int UKUITaskGroup::buttonsCount() const
 int UKUITaskGroup::visibleButtonsCount() const
 {
     int i = 0;
-    for (UKUITaskWidget *btn : qAsConst(mButtonHash))
+    //for (UKUITaskWidget *btn : qAsConst(mButtonHash))
+    for (auto it=mButtonHash.begin();it!=mButtonHash.end();it++)
+     {
+        UKUITaskWidget *btn=it.value();
         if (btn->isVisibleTo(mPopup))
             i++;
+    }
     return i;
 }
 
@@ -557,8 +565,10 @@ void UKUITaskGroup::refreshVisibility()
     bool will = false;
     UKUITaskBar const * taskbar = parentTaskBar();
     const int showDesktop = taskbar->showDesktopNum();
-    for(UKUITaskWidget * btn : qAsConst(mButtonHash))
+    //for(UKUITaskWidget * btn : qAsConst(mButtonHash))
+    for(auto i=mButtonHash.begin();i!=mButtonHash.end();i++)
     {
+	UKUITaskWidget * btn=i.value();
         bool visible = taskbar->isShowOnlyOneDesktopTasks() ? btn->isOnDesktop(0 == showDesktop ? KWindowSystem::currentDesktop() : showDesktop) : true;
         visible &= taskbar->isShowOnlyCurrentScreenTasks() ? btn->isOnCurrentScreen() : true;
         visible &= taskbar->isShowOnlyMinimizedTasks() ? btn->isMinimized() : true;

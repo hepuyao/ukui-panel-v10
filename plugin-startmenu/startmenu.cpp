@@ -52,7 +52,7 @@ UKUIStartMenuButton::UKUIStartMenuButton( IUKUIPanelPlugin *plugin, QWidget* par
     mPlugin(plugin)
 {
     this->setIcon(QIcon("/usr/share/ukui-panel/panel/img/startmenu.svg"));
-    this->setStyle(new CustomStyle());
+    //this->setStyle(new CustomStyle());
 }
 
 UKUIStartMenuButton::~UKUIStartMenuButton()
