@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: kylin Team <team+kylin@tracker.debian.org>
 Uploaders: Aron Xu <aron@debian.org>,
            handsome_feng <jianfengli@ubuntukylin.com>
-Build-Depends: debhelper-compat (= 12),
+Build-Depends: debhelper,
                cmake,
                libasound2-dev,
                libdbusmenu-qt5-dev,
@@ -17,7 +17,6 @@ Build-Depends: debhelper-compat (= 12),
                libqt5x11extras5-dev,
                libsensors4-dev [!hurd-any],
                libstatgrab-dev [linux-any],
-               libsysstat-qt5-0-dev (>= 0.4.2),
                libx11-dev,
                libxcb-damage0-dev,
                libxcb-util0-dev,
@@ -29,12 +28,11 @@ Build-Depends: debhelper-compat (= 12),
                libxrender-dev,
                libqt5webkit5-dev,
                qttools5-dev,
-               libqt5xdg-dev,
                libgsettings-qt-dev,
-               libpoppler-dev,
-               libpoppler-qt5-dev,
-               libpeony-dev,
-               libdconf-dev
+               libdconf-dev,
+               qtbase5-dev,
+               qtbase5-dev-tools,
+               qttools5-dev-tools
 Standards-Version: 4.5.0
 Rules-Requires-Root: no
 Vcs-Browser: https://github.com/ukui/ukui-panel
