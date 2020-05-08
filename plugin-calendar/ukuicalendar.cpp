@@ -250,6 +250,7 @@ void IndicatorCalendar::updateTimeText()
         const QByteArray id(HOUR_SYSTEM_CONTROL);
         if(QGSettings::isSchemaInstalled(id))
         {
+            hourSystemMode="24";
         gsettings = new QGSettings(id);
         QStringList keys = gsettings->keys();
         if(keys.contains("hoursystem")){
@@ -258,6 +259,7 @@ void IndicatorCalendar::updateTimeText()
         if(!gsettings)
         {
             qDebug()<<"gsettings  get error    :";
+	    hourSystemMode="24";
             return;
         }
         if(!QString::compare("24",hourSystemMode))
@@ -298,6 +300,19 @@ void IndicatorCalendar::updateTimeText()
 //        {
 //            mContent->setText(tzNow.toString("Ahh:mm ddd  yyyy/MM/dd"));
 //        }
+        }
+        else
+        {
+	    if(panel()->isHorizontal())
+            {
+                str=tzNow.toString(HOUR_SYSTEM_24_Horizontal);
+            }
+            else
+            {
+                str=tzNow.toString(HOUR_SYSTEM_24_Vertical);
+            }
+
+        }
         mContent->setText(str);
         if (old_size != mContent->sizeHint())
         {
@@ -306,7 +321,7 @@ void IndicatorCalendar::updateTimeText()
         mRotatedWidget->update();
         updatePopupContent();
         mbIsNeedUpdate = false;
-        }
+        
 
 }
 

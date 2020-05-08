@@ -190,7 +190,7 @@ if(SPACER_PLUGIN)
     add_subdirectory(plugin-spacer)
 endif()
 
-#setByDefault(CALENDAR_PLUGIN Yes)
+setByDefault(CALENDAR_PLUGIN Yes)
 if(CALENDAR_PLUGIN)
 #   list(APPEND STATIC_PLUGINS "calendar")
 #    add_definitions(-DWITH_CALENDAR_PLUGIN)
