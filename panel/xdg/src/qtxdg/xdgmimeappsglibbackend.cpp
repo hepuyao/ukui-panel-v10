@@ -34,7 +34,7 @@
 static QList<XdgDesktopFile *> GAppInfoGListToXdgDesktopQList(GList *list)
 {
     QList<XdgDesktopFile *> dl;
-    for (GList *l = list; l != NULL; l = l->next) {
+    for (GList *l = list; l != nullptr; l = l->next) {
         if (l->data) {
             const QString file = QString::fromUtf8(g_desktop_app_info_get_filename(G_DESKTOP_APP_INFO(l->data)));
             if (!file.isEmpty()) {
@@ -51,17 +51,17 @@ static QList<XdgDesktopFile *> GAppInfoGListToXdgDesktopQList(GList *list)
 static GDesktopAppInfo *XdgDesktopFileToGDesktopAppinfo(const XdgDesktopFile &app)
 {
     GDesktopAppInfo *gApp = g_desktop_app_info_new_from_filename(app.fileName().toUtf8().constData());
-    if (gApp == NULL) {
+    if (gApp == nullptr) {
         qCWarning(QtXdgMimeAppsGLib, "Failed to load GDesktopAppInfo for '%s'",
                 qPrintable(app.fileName()));
-        return NULL;
+        return nullptr;
     }
     return gApp;
 }
 
 XdgMimeAppsGLibBackend::XdgMimeAppsGLibBackend(QObject *parent)
     : XdgMimeAppsBackendInterface(parent),
-      mWatcher(NULL)
+      mWatcher(nullptr)
 {
     // Make sure that we have glib support enabled.
     qunsetenv("QT_NO_GLIB");
@@ -74,7 +74,7 @@ XdgMimeAppsGLibBackend::XdgMimeAppsGLibBackend(QObject *parent)
         g_object_unref(G_APP_INFO(fooApp));
 
     mWatcher = g_app_info_monitor_get();
-    if (mWatcher != NULL) {
+    if (mWatcher != nullptr) {
         g_signal_connect (mWatcher, "changed", G_CALLBACK (_changed), this);
     }
 }
@@ -93,10 +93,10 @@ void XdgMimeAppsGLibBackend::_changed(GAppInfoMonitor *monitor, XdgMimeAppsGLibB
 bool XdgMimeAppsGLibBackend::addAssociation(const QString &mimeType, const XdgDesktopFile &app)
 {
     GDesktopAppInfo *gApp = XdgDesktopFileToGDesktopAppinfo(app);
-    if (gApp == NULL)
+    if (gApp == nullptr)
         return false;
 
-    GError *error = NULL;
+    GError *error = nullptr;
     if (g_app_info_add_supports_type(G_APP_INFO(gApp),
                                            mimeType.toUtf8().constData(), &error) == FALSE) {
         qCWarning(QtXdgMimeAppsGLib, "Failed to associate '%s' with '%s'. %s",
@@ -142,7 +142,7 @@ QList<XdgDesktopFile *> XdgMimeAppsGLibBackend::recommendedApps(const QString &m
     GAppInfo *defaultApp = g_app_info_get_default_for_type(contentType, FALSE);
     GList *list = g_app_info_get_recommended_for_type(contentType);
 
-    if (list != NULL && defaultApp != NULL) {
+    if (list != nullptr && defaultApp != nullptr) {
         GAppInfo *first = G_APP_INFO(g_list_nth_data(list, 0));
         GAppInfo *second = G_APP_INFO(g_list_nth_data(list, 1));
         if (!g_app_info_equal(defaultApp, first) && g_app_info_equal(defaultApp, second)) {
@@ -160,10 +160,10 @@ QList<XdgDesktopFile *> XdgMimeAppsGLibBackend::recommendedApps(const QString &m
 bool XdgMimeAppsGLibBackend::removeAssociation(const QString &mimeType, const XdgDesktopFile &app)
 {
     GDesktopAppInfo *gApp = XdgDesktopFileToGDesktopAppinfo(app);
-    if (gApp == NULL)
+    if (gApp == nullptr)
         return false;
 
-    GError *error = NULL;
+    GError *error = nullptr;
     if (g_app_info_remove_supports_type(G_APP_INFO(gApp),
                                            mimeType.toUtf8().constData(), &error) == FALSE) {
         qCWarning(QtXdgMimeAppsGLib, "Failed to remove association between '%s' and '%s'. %s",
@@ -185,15 +185,15 @@ bool XdgMimeAppsGLibBackend::reset(const QString &mimeType)
 XdgDesktopFile *XdgMimeAppsGLibBackend::defaultApp(const QString &mimeType)
 {
     GAppInfo *appinfo = g_app_info_get_default_for_type(mimeType.toUtf8().constData(), false);
-    if (appinfo == NULL || !G_IS_DESKTOP_APP_INFO(appinfo)) {
-        return NULL;
+    if (appinfo == nullptr || !G_IS_DESKTOP_APP_INFO(appinfo)) {
+        return nullptr;
     }
 
     const char *file = g_desktop_app_info_get_filename(G_DESKTOP_APP_INFO(appinfo));
 
-    if (file == NULL) {
+    if (file == nullptr) {
         g_object_unref(appinfo);
-        return NULL;
+        return nullptr;
     }
 
     const QString s = QString::fromUtf8(file);
@@ -204,16 +204,16 @@ XdgDesktopFile *XdgMimeAppsGLibBackend::defaultApp(const QString &mimeType)
         return f;
 
     delete f;
-    return NULL;
+    return nullptr;
 }
 
 bool XdgMimeAppsGLibBackend::setDefaultApp(const QString &mimeType, const XdgDesktopFile &app)
 {
     GDesktopAppInfo *gApp = XdgDesktopFileToGDesktopAppinfo(app);
-    if (gApp == NULL)
+    if (gApp == nullptr)
         return false;
 
-    GError *error = NULL;
+    GError *error = nullptr;
     if (g_app_info_set_as_default_for_type(G_APP_INFO(gApp),
                                            mimeType.toUtf8().constData(), &error) == FALSE) {
         qCWarning(QtXdgMimeAppsGLib, "Failed to set '%s' as the default for '%s'. %s",

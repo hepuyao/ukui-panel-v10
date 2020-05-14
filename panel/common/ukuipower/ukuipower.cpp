@@ -34,7 +34,7 @@
 
 using namespace UKUi;
 
-Power::Power(bool useUkuiSessionProvider, QObject * parent /*= NULL*/) :
+Power::Power(bool useUkuiSessionProvider, QObject * parent /*= nullptr*/) :
     QObject(parent)
 {
     mProviders.append(new CustomProvider(this));
@@ -46,7 +46,7 @@ Power::Power(bool useUkuiSessionProvider, QObject * parent /*= NULL*/) :
     mProviders.append(new LxSessionProvider(this));
 }
 
-Power::Power(QObject * parent /*= NULL*/)
+Power::Power(QObject * parent /*= nullptr*/)
     : Power(true, parent)
 {
 }

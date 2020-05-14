@@ -327,7 +327,7 @@ void TrayIcon::draw(QPaintEvent* /*event*/)
     }
     else
     {
-        qWarning() << "    * Error image is NULL";
+        qWarning() << "    * Error image is nullptr";
 
         XClearArea(mDisplay, (Window)winId(), 0, 0, attr.width, attr.height, False);
         // for some unknown reason, XGetImage failed. try another less efficient method.
@@ -424,7 +424,7 @@ void TrayIcon::paintEvent(QPaintEvent *)
     }
     else
     {
-        qWarning() << "    * Error image is NULL";
+        qWarning() << "    * Error image is nullptr";
 
         XClearArea(mDisplay, (Window)winId(), 0, 0, attr.width, attr.height, False);
         image = qApp->primaryScreen()->grabWindow(mIconId).toImage();

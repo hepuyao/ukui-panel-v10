@@ -52,7 +52,7 @@ public:
     PanelPluginsModel(UKUIPanel * panel,
                       QString const & namesKey,
                       QStringList const & desktopDirs,
-                      QObject * parent = NULL);
+                      QObject * parent = nullptr);
     ~PanelPluginsModel();
 
     /*!
@@ -158,7 +158,7 @@ signals:
     void pluginAdded(Plugin * plugin);
     /*!
      * \brief pluginRemoved gets emitted whenever a Plugin is removed.
-     * \param plugin The Plugin that was removed. This could be a NULL.
+     * \param plugin The Plugin that was removed. This could be a nullptr.
      */
     void pluginRemoved(Plugin * plugin);
     /*!
@@ -167,11 +167,11 @@ signals:
      * This signal gets emitted in movePlugin, onMovePluginUp and
      * onMovePluginDown.
      *
-     * \param plugin The Plugin that was moved. This could be a NULL.
+     * \param plugin The Plugin that was moved. This could be a nullptr.
      *
      * \sa pluginMovedUp
      */
-    void pluginMoved(Plugin * plugin); //plugin can be NULL in case of move of not loaded plugin
+    void pluginMoved(Plugin * plugin); //plugin can be nullptr in case of move of not loaded plugin
     /*!
      * \brief pluginMovedUp gets emitted whenever a Plugin is moved a single
      * slot upwards.

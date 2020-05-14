@@ -179,7 +179,7 @@ namespace
             sigemptyset(&sa.sa_mask);
             sa.sa_flags = 0;
             for (auto const & signo : signoList)
-                sigaction(signo, &sa, NULL);
+                sigaction(signo, &sa, nullptr);
         }
 
     public:

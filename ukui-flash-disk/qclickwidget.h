@@ -36,21 +36,21 @@ class QClickWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit QClickWidget(QWidget *parent = NULL,
+    explicit QClickWidget(QWidget *parent = nullptr,
                           int num = 0,
-                          QString driveName=NULL,
-                          QString nameDis1=NULL,
-                          QString nameDis2 =NULL,
-                          QString nameDis3 = NULL,
-                          QString nameDis4 = NULL,
-                          qlonglong capacityDis1=NULL,
-                          qlonglong capacityDis2=NULL,
-                          qlonglong capacityDis3=NULL,
-                          qlonglong capacityDis4=NULL,
-                          QString pathDis1=NULL,
-                          QString pathDis2=NULL,
-                          QString pathDis3=NULL,
-                          QString pathDis4=NULL);
+                          QString driveName=nullptr,
+                          QString nameDis1=nullptr,
+                          QString nameDis2 =nullptr,
+                          QString nameDis3 = nullptr,
+                          QString nameDis4 = nullptr,
+                          qlonglong capacityDis1=nullptr,
+                          qlonglong capacityDis2=nullptr,
+                          qlonglong capacityDis3=nullptr,
+                          qlonglong capacityDis4=nullptr,
+                          QString pathDis1=nullptr,
+                          QString pathDis2=nullptr,
+                          QString pathDis3=nullptr,
+                          QString pathDis4=nullptr);
     ~QClickWidget();
 public Q_SLOTS:
     void mouseClicked();

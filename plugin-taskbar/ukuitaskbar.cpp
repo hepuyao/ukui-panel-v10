@@ -160,7 +160,7 @@ void UKUITaskBar::dragEnterEvent(QDragEnterEvent* event)
     if (event->mimeData()->hasFormat(UKUITaskGroup::mimeDataFormat()))
     {
         event->acceptProposedAction();
-        buttonMove(NULL, qobject_cast<UKUITaskGroup *>(event->source()), event->pos());
+        buttonMove(nullptr, qobject_cast<UKUITaskGroup *>(event->source()), event->pos());
     } else
         event->ignore();
     QWidget::dragEnterEvent(event);
@@ -172,7 +172,7 @@ void UKUITaskBar::dragEnterEvent(QDragEnterEvent* event)
 void UKUITaskBar::dragMoveEvent(QDragMoveEvent * event)
 {
     //we don't get any dragMoveEvents if dragEnter wasn't accepted
-    buttonMove(NULL, qobject_cast<UKUITaskGroup *>(event->source()), event->pos());
+    buttonMove(nullptr, qobject_cast<UKUITaskGroup *>(event->source()), event->pos());
     QWidget::dragMoveEvent(event);
 }
 
@@ -190,9 +190,9 @@ void UKUITaskBar::buttonMove(UKUITaskGroup * dst, UKUITaskGroup * src, QPoint co
 
     const int size = mLayout->count();
     Q_ASSERT(0 < size);
-    //dst is NULL in case the drop occured on empty space in taskbar
+    //dst is nullptr in case the drop occured on empty space in taskbar
     int dst_index;
-    if (NULL == dst)
+    if (nullptr == dst)
     {
         //moving based on taskbar (not signaled by button)
         QRect occupied = mLayout->occupiedGeometry();
@@ -279,7 +279,7 @@ void UKUITaskBar::addWindow(WId window)
     // If grouping disabled group behaves like regular button
     const QString group_id = mGroupingEnabled ? KWindowInfo(window, 0, NET::WM2WindowClass).windowClassClass() : QString("%1").arg(window);
 
-    UKUITaskGroup *group = NULL;
+    UKUITaskGroup *group = nullptr;
     auto i_group = mKnownWindows.find(window);
     if (mKnownWindows.end() != i_group)
     {
@@ -493,7 +493,7 @@ void UKUITaskBar::settingsChanged()
         for (int i = mLayout->count() - 1; 0 <= i; --i)
         {
             UKUITaskGroup * group = qobject_cast<UKUITaskGroup*>(mLayout->itemAt(i)->widget());
-            if (NULL != group)
+            if (nullptr != group)
             {
                 mLayout->takeAt(i);
                 group->deleteLater();
@@ -600,7 +600,7 @@ void UKUITaskBar::wheelEvent(QWheelEvent* event)
 
     // create temporary list of visible groups in the same order like on the layout
     QList<UKUITaskGroup*> list;
-    UKUITaskGroup *group = NULL;
+    UKUITaskGroup *group = nullptr;
     for (int i = 0; i < mLayout->count(); i++)
     {
         QWidget * o = mLayout->itemAt(i)->widget();
@@ -620,7 +620,7 @@ void UKUITaskBar::wheelEvent(QWheelEvent* event)
     if (!group)
         group = list.at(0);
 
-    UKUITaskButton *button = NULL;
+    UKUITaskButton *button = nullptr;
 
     // switching between groups from temporary list in modulo addressing
     while (!button)conSize()
@@ -652,7 +652,7 @@ void UKUITaskBar::changeEvent(QEvent* event)
     // if current style is changed, reset the base style of the proxy style
     // so we can apply the new style correctly to task buttons.
     if(event->type() == QEvent::StyleChange)
-        mStyle->setBaseStyle(NULL);
+        mStyle->setBaseStyle(nullptr);
 
     QFrame::changeEvent(event);
 }
@@ -675,7 +675,7 @@ void UKUITaskBar::registerShortcuts()
 
 //        gshortcut = GlobalKeyShortcut::Client::instance()->addAction(QStringLiteral(), path, description, this);
 
-//        if (NULL != gshortcut)
+//        if (nullptr != gshortcut)
 //        {
 //            mKeys << gshortcut;
 //            connect(gshortcut, &GlobalKeyShortcut::Action::registrationFinished, this, &UKUITaskBar::shortcutRegistered);

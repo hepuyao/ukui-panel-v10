@@ -225,7 +225,7 @@ void UKUIQuickLaunch::addButton(QuickLaunchAction* action)
 
     mLayout->removeWidget(mPlaceHolder);
     mPlaceHolder->deleteLater();
-    mPlaceHolder = NULL;
+    mPlaceHolder = nullptr;
     mLayout->setEnabled(true);
     realign();
 }

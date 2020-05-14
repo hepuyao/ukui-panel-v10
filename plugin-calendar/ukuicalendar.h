@@ -114,7 +114,7 @@ class CalendarActiveLabel : public QLabel
 Q_OBJECT
 
 public:
-    explicit CalendarActiveLabel(IUKUIPanelPlugin *plugin,QWidget * = NULL);
+    explicit CalendarActiveLabel(IUKUIPanelPlugin *plugin,QWidget * = nullptr);
 
 Q_SIGNALS:
     void wheelScrolled(int);

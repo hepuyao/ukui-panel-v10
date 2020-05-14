@@ -125,7 +125,7 @@ UKUITray::UKUITray(UKUITrayPlugin *plugin, QWidget *parent):
     mDisplay(QX11Info::display())
 {
     mMapIcon.clear();
-    m_pwidget = NULL;
+    m_pwidget = nullptr;
     status=ST_HIDE;
     setLayout(new UKUi::GridLayout(this));
     _NET_SYSTEM_TRAY_OPCODE = XfitMan::atom("_NET_SYSTEM_TRAY_OPCODE");
@@ -161,7 +161,7 @@ UKUITray::~UKUITray()
         if(mTrayIcons[i])
         {
             mTrayIcons[i]->deleteLater();
-            mTrayIcons[i] = NULL;
+            mTrayIcons[i] = nullptr;
         }
     }
     for(int i  = 0; i < mStorageIcons.size(); i++)
@@ -169,7 +169,7 @@ UKUITray::~UKUITray()
         if(mStorageIcons[i])
         {
             mStorageIcons[i]->deleteLater();
-            mStorageIcons[i] = NULL;
+            mStorageIcons[i] = nullptr;
         }
     }
     for(int i  = 0; i < mHideIcons.size(); i++)
@@ -177,7 +177,7 @@ UKUITray::~UKUITray()
         if(mHideIcons[i])
         {
             mHideIcons[i]->deleteLater();
-            mHideIcons[i] = NULL;
+            mHideIcons[i] = nullptr;
         }
     }
     for(int i  = 0; i < mIcons.size(); i++)
@@ -185,7 +185,7 @@ UKUITray::~UKUITray()
         if(mIcons[i])
         {
             mIcons[i]->deleteLater();
-            mIcons[i] = NULL;
+            mIcons[i] = nullptr;
         }
     }
     mIcons.clear();
@@ -738,7 +738,7 @@ void UKUITray::freezeTrayApp(Window winId)
         const QByteArray ba(KEYBINDINGS_CUSTOM_SCHEMA);
         const QByteArray bba(allpath);
 
-        QGSettings *settings = NULL;
+        QGSettings *settings = nullptr;
         const QByteArray id(KEYBINDINGS_CUSTOM_SCHEMA);
         if(QGSettings::isSchemaInstalled(id))
         {
@@ -777,14 +777,14 @@ void UKUITray::freezeTrayApp(Window winId)
     {
         mStorageIcons.removeOne(storageicon);
         storageicon->deleteLater();
-        storageicon=NULL;
+        storageicon=nullptr;
     }
     TrayIcon *trayicon = findTrayIcon(winId);
     if(trayicon)
     {
         mTrayIcons.removeOne(trayicon);
         trayicon->deleteLater();
-        trayicon=NULL;
+        trayicon=nullptr;
     }
     handleStorageUi();
 }
@@ -1010,8 +1010,8 @@ QList<char *> UKUITray::listExistsPath(){
 
     QList<char *> vals;
 
-    for (int i = 0; childs[i] != NULL; i++){
-        if (dconf_is_rel_dir (childs[i], NULL)){
+    for (int i = 0; childs[i] != nullptr; i++){
+        if (dconf_is_rel_dir (childs[i], nullptr)){
             char * val = g_strdup (childs[i]);
 
             vals.append(val);
@@ -1042,7 +1042,7 @@ void UKUITray::regulateIcon(Window *mid)
         char * allpath = strcat(prepath, path);
         const QByteArray bba(allpath);
 
-        QGSettings *settings = NULL;
+        QGSettings *settings = nullptr;
         const QByteArray id(KEYBINDINGS_CUSTOM_SCHEMA);
         if(QGSettings::isSchemaInstalled(id))
         {
@@ -1252,7 +1252,7 @@ void UKUITray::handleStorageUi()
             vLayout->deleteLater();
         }
         m_pwidget->deleteLater();
-        m_pwidget = NULL;
+        m_pwidget = nullptr;
     }
     m_pwidget =  new UKUiStorageWidget;
     m_pwidget->setLayout(new UKUi::GridLayout);

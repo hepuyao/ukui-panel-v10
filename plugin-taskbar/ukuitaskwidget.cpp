@@ -761,9 +761,9 @@ void UKUITaskWidget::removeThumbNail()
     if(mThumbnailLabel)
     {
         mVWindowsLayout->removeWidget(mThumbnailLabel);
-        mThumbnailLabel->setParent(NULL);
+        mThumbnailLabel->setParent(nullptr);
         mThumbnailLabel->deleteLater();
-        mThumbnailLabel = NULL;
+        mThumbnailLabel = nullptr;
     }
 }
 

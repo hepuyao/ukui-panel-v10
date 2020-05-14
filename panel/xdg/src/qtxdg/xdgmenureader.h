@@ -39,7 +39,7 @@ class XdgMenuReader : public QObject
 {
     Q_OBJECT
 public:
-    explicit XdgMenuReader(XdgMenu* menu, XdgMenuReader*  parentReader = NULL, QObject *parent = NULL);
+    explicit XdgMenuReader(XdgMenu* menu, XdgMenuReader*  parentReader = nullptr, QObject *parent = nullptr);
     ~XdgMenuReader() override;
 
     bool load(const QString& fileName, const QString& baseDir = QString());

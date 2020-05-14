@@ -155,7 +155,7 @@ public:
      * @brief Searches for a Plugin in the Plugins-list of this panel. Takes
      * an IUKUIPanelPlugin as parameter and returns the corresponding Plugin.
      * @param iPlugin IUKUIPanelPlugin that we are looking for.
-     * @return The corresponding Plugin if it is loaded in this panel, NULL
+     * @return The corresponding Plugin if it is loaded in this panel, nullptr
      * otherwise.
      */
     Plugin *findPlugin(const IUKUIPanelPlugin *iPlugin) const;

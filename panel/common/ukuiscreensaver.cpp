@@ -98,7 +98,7 @@ static bool GetIntArrayProperty(XID window,
     Atom type = None;
     int format = 0;  // size in bits of each item in 'property'
     unsigned long num_items = 0;
-    unsigned char* properties = NULL;
+    unsigned char* properties = nullptr;
 
     int result = GetProperty(window, property_name,
                            (~0L), // (all of them)

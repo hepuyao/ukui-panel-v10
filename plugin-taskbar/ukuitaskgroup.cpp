@@ -139,10 +139,10 @@ UKUITaskGroup::UKUITaskGroup(const QString &groupName, WId window, UKUITaskBar *
     mPreventPopup(false),
     mSingleButton(true),
     mTimer(new QTimer(this)),
-    mpWidget(NULL)
+    mpWidget(nullptr)
 {
     Q_ASSERT(parent);
-    mpScrollArea = NULL;
+    mpScrollArea = nullptr;
     taskgroupStatus = NORMAL;
 
     setObjectName(groupName);
@@ -165,17 +165,17 @@ UKUITaskGroup::~UKUITaskGroup()
 //    if(mPopup)
 //    {
 //        mPopup->deleteLater();
-//        mPopup = NULL;
+//        mPopup = nullptr;
 //    }
 //    if(mpWidget)
 //    {
 //        mpWidget->deleteLater();
-//        mpWidget = NULL;
+//        mpWidget = nullptr;
 //    }
 //    if(VLayout)
 //    {
 //        VLayout->deleteLater();
-//        VLayout = NULL;
+//        VLayout = nullptr;
 //    }
 }
 
@@ -246,7 +246,7 @@ QWidget * UKUITaskGroup::checkedButton() const
 //        if (button->isChecked())
 //            return button;
 
-    return NULL;
+    return nullptr;
 }
 
 /************************************************
@@ -282,7 +282,7 @@ QWidget * UKUITaskGroup::getNextPrevChildButton(bool next, bool circular)
     if (circular)
         idx = (idx + mButtonHash.count()) % mButtonHash.count();
     else if (mPopup->count() <= idx || idx < 0)
-        return NULL;
+        return nullptr;
 
     // return the next or the previous child
     QLayoutItem *item = mPopup->itemAt(idx);
@@ -294,7 +294,7 @@ QWidget * UKUITaskGroup::getNextPrevChildButton(bool next, bool circular)
     }
 
 #endif
-     return NULL;
+     return nullptr;
 }
 
 /************************************************
@@ -302,7 +302,7 @@ QWidget * UKUITaskGroup::getNextPrevChildButton(bool next, bool circular)
  ************************************************/
 void UKUITaskGroup::onActiveWindowChanged(WId window)
 {
-    UKUITaskWidget *button = mButtonHash.value(window, NULL);
+    UKUITaskWidget *button = mButtonHash.value(window, nullptr);
 //    for (QWidget *btn : qAsConst(mButtonHash))
 //        btn->setChecked(false);
 
@@ -312,7 +312,7 @@ void UKUITaskGroup::onActiveWindowChanged(WId window)
 //        if (button->hasUrgencyHint())
 //            button->setUrgencyHint(false);
 //    }
-    setChecked(NULL != button);
+    setChecked(nullptr != button);
 }
 
 /************************************************
@@ -503,7 +503,7 @@ void UKUITaskGroup::regroup()
 //    {
 //        mSingleButton = false;
 //        // Get first visible button
-//        UKUITaskButton * button = NULL;
+//        UKUITaskButton * button = nullptr;
 //        for (UKUITaskButton *btn : qAsConst(mButtonHash))
 //        {
 //            if (btn->isVisibleTo(mPopup))
@@ -881,19 +881,19 @@ void UKUITaskGroup::removeWidget()
         mPopup->layout()->removeWidget(mpWidget);
         QHBoxLayout *hLayout = dynamic_cast<QHBoxLayout*>(mpWidget->layout());
         QVBoxLayout *vLayout = dynamic_cast<QVBoxLayout*>(mpWidget->layout());
-        if(hLayout != NULL)
+        if(hLayout != nullptr)
         {
             hLayout->deleteLater();
-            hLayout = NULL;
+            hLayout = nullptr;
         }
-        if(vLayout != NULL)
+        if(vLayout != nullptr)
         {
             vLayout->deleteLater();
-            vLayout = NULL;
+            vLayout = nullptr;
         }
-        mpWidget->setParent(NULL);
+        mpWidget->setParent(nullptr);
         mpWidget->deleteLater();
-        mpWidget = NULL;
+        mpWidget = nullptr;
     }
 }
 
@@ -910,24 +910,24 @@ void UKUITaskGroup::removeSrollWidget()
         mPopup->layout()->removeWidget(mpWidget);
         QHBoxLayout *hLayout = dynamic_cast<QHBoxLayout*>(mpWidget->layout());
         QVBoxLayout *vLayout = dynamic_cast<QVBoxLayout*>(mpWidget->layout());
-        if(hLayout != NULL)
+        if(hLayout != nullptr)
         {
             hLayout->deleteLater();
-            hLayout = NULL;
+            hLayout = nullptr;
         }
-        if(vLayout != NULL)
+        if(vLayout != nullptr)
         {
             vLayout->deleteLater();
-            vLayout = NULL;
+            vLayout = nullptr;
         }
-        mpWidget->setParent(NULL);
+        mpWidget->setParent(nullptr);
         mpWidget->deleteLater();
-        mpWidget = NULL;
+        mpWidget = nullptr;
     }
     if(mpScrollArea)
     {
         mpScrollArea->deleteLater();
-        mpScrollArea = NULL;
+        mpScrollArea = nullptr;
     }
 
 }
@@ -1118,8 +1118,8 @@ void UKUITaskGroup::showAllWindowByList()
 
 void UKUITaskGroup::showAllWindowByThumbnail()
 {
-    XImage *img = NULL;
-    Display *display = NULL;
+    XImage *img = nullptr;
+    Display *display = nullptr;
     QPixmap thumbnail;
     XWindowAttributes attr;
     int previewPosition = 0;
@@ -1170,7 +1170,7 @@ void UKUITaskGroup::showAllWindowByThumbnail()
     {
         UKUITaskWidget *btn = it.value();
         btn->addThumbNail();
-        display = XOpenDisplay(NULL);
+        display = XOpenDisplay(nullptr);
         XGetWindowAttributes(display, it.key(), &attr);
         img = XGetImage(display, it.key(), 0, 0, attr.width, attr.height, 0xffffffff,ZPixmap);
         if(img)

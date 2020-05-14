@@ -65,9 +65,9 @@ public:
      * avoid recursion if the ukui-session wants to provide some of the
      * methods by itself with internal use of this object.
      */
-    explicit Power(bool useUkuiSessionProvider, QObject *parent = NULL);
+    explicit Power(bool useUkuiSessionProvider, QObject *parent = nullptr);
     /// Constructs a Power with using the ukui-session provider.
-    explicit Power(QObject *parent = NULL);
+    explicit Power(QObject *parent = nullptr);
 
     /// Destroys the object.
     virtual ~Power();

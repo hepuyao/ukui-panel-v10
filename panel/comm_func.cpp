@@ -56,7 +56,7 @@ bool getRunCmdOutput(const char *command, char *output, int max_size)
 {
 
     FILE   *stream; 
-    if ((stream = popen(command, "r" )) == NULL)
+    if ((stream = popen(command, "r" )) == nullptr)
         return false;
 
     if (fread(output, sizeof(char), max_size, stream) <= 0)
@@ -92,7 +92,7 @@ void startChildApp(const char *app_exe,char *argv_exec[])
         }
     }
     else {
-        waitpid(child_pid,NULL,0);
+        waitpid(child_pid,nullptr,0);
     }
 }
 
@@ -106,7 +106,7 @@ void save_q_string_2_m_string(QString q_string, char **m_buf)
     tmp_str = q_string.toStdString();
     len = tmp_str.length() + 1;
 
-    if ((m_buf_tmp = (char *)malloc(len)) == NULL)
+    if ((m_buf_tmp = (char *)malloc(len)) == nullptr)
         return;
 
     memset(m_buf_tmp, 0, len);
@@ -181,7 +181,7 @@ bool getReadFileContent(const char *file_path, char *output, int max_size)
 {
     FILE   *stream; 
 
-    if ((stream = fopen(file_path, "r" )) == NULL)
+    if ((stream = fopen(file_path, "r" )) == nullptr)
         return false;
 
     if (fread(output, sizeof(char), max_size, stream) <= 0)
@@ -225,7 +225,7 @@ char* getOsVersion()
 
 int getsrand()
 {
-    srand(time(NULL));//设置随机数种子。
+    srand(time(nullptr));//设置随机数种子。
     return rand()%1000000;//每次获取一个随机数并输出。
 }
 
@@ -352,7 +352,7 @@ char* get_machine_id()
     FILE *in;
     if ((in = fopen("/etc/machine-id", "r")) == NULL)
     {
-        if ((in = fopen("/var/lib/dbus/machine-id", "r")) == NULL) {
+        if ((in = fopen("/var/lib/dbus/machine-id", "r")) == nullptr) {
             return "unknown-machine-and-not-ubuntu";
         }
     }
@@ -630,11 +630,11 @@ int get_total_mem()
 {
     const char *file = "/proc/meminfo";
     char line_buff[128] = {0};
-    FILE *fp = NULL;
+    FILE *fp = nullptr;
     char p_name[32] = {0};
     unsigned int total_mem;
 
-    if((fp = fopen(file, "r")) == NULL)
+    if((fp = fopen(file, "r")) == nullptr)
         return -1;
     fgets(line_buff, sizeof(line_buff), fp);
     sscanf(line_buff, "%s %u", p_name, &total_mem);
@@ -652,13 +652,13 @@ int get_total_mem()
 int get_process_mem(pid_t pid)
 {
     char file[64] = {0};
-    FILE *fp = NULL;
+    FILE *fp = nullptr;
     char p_name[32] = {0};
     char line_buff[128] = {0};
     unsigned int process_mem;
 
     sprintf(file, "/proc/%d/status", (unsigned int)pid);
-    if((fp = fopen(file, "r")) == NULL)
+    if((fp = fopen(file, "r")) == nullptr)
         return -1;
     for(int i = 0; i< 20; i++)
         fgets(line_buff, sizeof(line_buff), fp);
@@ -677,24 +677,24 @@ int get_process_mem(pid_t pid)
 int get_total_cpu_accurancy()
 {
     const char* file = "/proc/stat";
-    FILE *fp = NULL;
+    FILE *fp = nullptr;
     char line_buff[512] = {0};
     char str[32] = {0};
-    char *pch = NULL;
+    char *pch = nullptr;
     int num[10] = {0};
     int sum = 0, i = 0;
 
-    if((fp = fopen(file, "r")) == NULL)
+    if((fp = fopen(file, "r")) == nullptr)
         return -1;
     fgets(line_buff, sizeof(line_buff), fp);
 
     pch = strtok(line_buff, " ");
-    while(pch != NULL)
+    while(pch != nullptr)
     {
         sprintf(str, "%s", pch);
         if(IsNumeric(str))
             num[i++] = atoi(str);
-        pch = strtok(NULL, " ");
+        pch = strtok(nullptr, " ");
     }
     for(i = 0; i<9; i++)
         sum += num[i];
@@ -712,20 +712,20 @@ int get_total_cpu_accurancy()
 int get_process_cpu_accurancy(pid_t pid)
 {
     char file[64] = {0};
-    FILE *fp = NULL;
+    FILE *fp = nullptr;
     char buff[512] = {0};
     char str[32] = {0};
-    char *pch = NULL;
+    char *pch = nullptr;
     int i = 0, sum = 0;
     int num[4] = {0};
 
     sprintf(file, "/proc/%d/stat", pid);
-    if((fp = fopen(file, "r")) == NULL)
+    if((fp = fopen(file, "r")) == nullptr)
         return -1;
     fgets(buff, sizeof(buff), fp);
 
     pch = strtok(buff, " ");
-    while(pch != NULL)
+    while(pch != nullptr)
     {
         i++;
         if(i>=14 && i<=17)
@@ -733,7 +733,7 @@ int get_process_cpu_accurancy(pid_t pid)
             sprintf(str, "%s", pch);
             num[i-14] = atoi(str);
         }
-        pch = strtok(NULL, " ");
+        pch = strtok(nullptr, " ");
     }
     for(i = 0; i<4; i++)
     {
@@ -752,15 +752,15 @@ int get_process_cpu_accurancy(pid_t pid)
 int get_cpu_num()
 {
     const char *file = "/proc/cpuinfo";
-    FILE *fp = NULL;
+    FILE *fp = nullptr;
     char line_buff[128] = {0};
     int num = 0;
 
-    if((fp = fopen(file, "r")) == NULL)
+    if((fp = fopen(file, "r")) == nullptr)
         return -1;
-    while(fgets(line_buff, sizeof(line_buff), fp) != NULL)
+    while(fgets(line_buff, sizeof(line_buff), fp) != nullptr)
     {
-        if(strstr(line_buff, "processor") != NULL)
+        if(strstr(line_buff, "processor") != nullptr)
         {
             //sscanf(line_buff, "%s %s : %d", tmp, tmp, &cores_num);
             //return cores_num;

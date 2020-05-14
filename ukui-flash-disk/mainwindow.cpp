@@ -33,7 +33,7 @@
 void frobnitz_result_func(GDrive *source_object,GAsyncResult *res,MainWindow *p_this)
 {
     gboolean success =  FALSE;
-    GError *err = NULL;
+    GError *err = nullptr;
     success = g_drive_eject_with_operation_finish (source_object, res, &err);
 
     if (!err)
@@ -60,7 +60,7 @@ void frobnitz_result_func(GDrive *source_object,GAsyncResult *res,MainWindow *p_
 void frobnitz_result_func_drive(GDrive *source_object,GAsyncResult *res,MainWindow *p_this)
 {
     gboolean success =  FALSE;
-    GError *err = NULL;
+    GError *err = nullptr;
     success = g_drive_start_finish (source_object, res, &err);
     if(!err)
     {
@@ -136,7 +136,7 @@ void MainWindow::getDeviceInfo()
     g_signal_connect (g_volume_monitor, "drive-connected", G_CALLBACK (drive_connected_callback), this);
     g_signal_connect (g_volume_monitor, "drive-disconnected", G_CALLBACK (drive_disconnected_callback), this);
     g_signal_connect (g_volume_monitor, "volume-added", G_CALLBACK (volume_added_callback), this);
-    g_signal_connect (g_volume_monitor, "volume-removed", G_CALLBACK (volume_removed_callback), NULL);
+    g_signal_connect (g_volume_monitor, "volume-removed", G_CALLBACK (volume_removed_callback), nullptr);
 //about drive
     GList *current_drive_list = g_volume_monitor_get_connected_drives(g_volume_monitor);
     while(current_drive_list)
@@ -167,10 +167,10 @@ void MainWindow::getDeviceInfo()
             *findGVolumeList()<<gvolume;
             g_volume_mount(gvolume,
                            G_MOUNT_MOUNT_NONE,
-                           NULL,
-                           NULL,
-                           NULL,
-                           NULL);
+                           nullptr,
+                           nullptr,
+                           nullptr,
+                           nullptr);
         }
         current_volume_list = current_volume_list->next;
         qDebug()<<"gvolume can go";
@@ -222,8 +222,8 @@ void MainWindow::volume_added_callback(GVolumeMonitor *monitor, GVolume *volume,
     qDebug()<<"volume is to be added";
     g_volume_mount(volume,
                    G_MOUNT_MOUNT_NONE,
-                   NULL,
-                   NULL,
+                   nullptr,
+                   nullptr,
                    GAsyncReadyCallback(frobnitz_result_func_volume),
                    p_this);
 }
@@ -239,7 +239,7 @@ void MainWindow::frobnitz_result_func_volume(GVolume *source_object,GAsyncResult
 
     qDebug()<<"p_this:"<<p_this;
     gboolean success =  FALSE;
-    GError *err = NULL;
+    GError *err = nullptr;
     success = g_volume_mount_finish (source_object, res, &err);
     qDebug()<<success<<"if i have been successful";
     qDebug()<<"g_list_length(g_drive_get_volumes(g_volume_get_drive(source_object)))"<<g_list_length(g_drive_get_volumes(g_volume_get_drive(source_object)));
@@ -261,10 +261,10 @@ void MainWindow::frobnitz_result_func_volume(GVolume *source_object,GAsyncResult
         qDebug()<<"oh no no no no no sorry i'm wrong"<<err->message<<err->code;
 //        g_volume_mount(source_object,
 //                       G_MOUNT_MOUNT_NONE,
-//                       NULL,
-//                       NULL,
+//                       nullptr,
+//                       nullptr,
 //                       GAsyncReadyCallback(frobnitz_result_func_volume),
-//                       NULL);
+//                       nullptr);
     }
 
 
@@ -274,20 +274,20 @@ void MainWindow::frobnitz_result_func_volume(GVolume *source_object,GAsyncResult
 void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason)
 {
 
-//    if(this->interfaceHideTime != NULL)
+//    if(this->interfaceHideTime != nullptr)
 //    {
 //        delete this->interfaceHideTime;
 //    }
     //int hign = 200;
-    if(ui->centralWidget != NULL)
+    if(ui->centralWidget != nullptr)
     {
         disconnect(interfaceHideTime, SIGNAL(timeout()), this, SLOT(on_Maininterface_hide()));
     }
     int num = 0;
-    if ( this->vboxlayout != NULL )
+    if ( this->vboxlayout != nullptr )
     {
         QLayoutItem* item;
-        while ((item = this->vboxlayout->takeAt(0)) != NULL)
+        while ((item = this->vboxlayout->takeAt(0)) != nullptr)
         {
             delete item->widget();
             delete item;
@@ -321,25 +321,25 @@ void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason)
                        QByteArray date = UDiskPathDis1.toLocal8Bit();
                        char *p_Change = date.data();
                        GFile *file = g_file_new_for_path(p_Change);
-                       GFileInfo *info = g_file_query_filesystem_info(file,"*",NULL,NULL);
+                       GFileInfo *info = g_file_query_filesystem_info(file,"*",nullptr,nullptr);
                        totalDis1 = g_file_info_get_attribute_uint64(info,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
                        if(findGDriveList()->size() == 1)
                        {
                            newarea(DisNum,g_drive_get_name(cacheDrive),
                                    g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
-                                   NULL,NULL,NULL, totalDis1,NULL,NULL,NULL, UDiskPathDis1,NULL,NULL,NULL,1);
+                                   nullptr,nullptr,nullptr, totalDis1,nullptr,nullptr,nullptr, UDiskPathDis1,nullptr,nullptr,nullptr,1);
                        }
                        else if(num == 1)
                        {
                            newarea(DisNum,g_drive_get_name(cacheDrive),
                                    g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
-                                   NULL,NULL,NULL, totalDis1,NULL,NULL,NULL, UDiskPathDis1,NULL,NULL,NULL,1);
+                                   nullptr,nullptr,nullptr, totalDis1,nullptr,nullptr,nullptr, UDiskPathDis1,nullptr,nullptr,nullptr,1);
                        }
                        else
                        {
                            newarea(DisNum,g_drive_get_name(cacheDrive),
                                    g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
-                                   NULL,NULL,NULL,totalDis1,NULL,NULL,NULL, UDiskPathDis1,NULL,NULL,NULL, 2);
+                                   nullptr,nullptr,nullptr,totalDis1,nullptr,nullptr,nullptr, UDiskPathDis1,nullptr,nullptr,nullptr, 2);
                        }
                     }
                     if(DisNum == 2)
@@ -350,14 +350,14 @@ void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason)
                         QByteArray dateDis1 = UDiskPathDis1.toLocal8Bit();
                         char *p_ChangeDis1 = dateDis1.data();
                         GFile *fileDis1 = g_file_new_for_path(p_ChangeDis1);
-                        GFileInfo *infoDis1 = g_file_query_filesystem_info(fileDis1,"*",NULL,NULL);
+                        GFileInfo *infoDis1 = g_file_query_filesystem_info(fileDis1,"*",nullptr,nullptr);
                         totalDis1 = g_file_info_get_attribute_uint64(infoDis1,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 
                         UDiskPathDis2 = g_file_get_path(g_mount_get_root(g_volume_get_mount((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1))));
                         QByteArray dateDis2 = UDiskPathDis2.toLocal8Bit();
                         char *p_ChangeDis2 = dateDis2.data();
                         GFile *fileDis2 = g_file_new_for_path(p_ChangeDis2);
-                        GFileInfo *infoDis2 = g_file_query_filesystem_info(fileDis2,"*",NULL,NULL);
+                        GFileInfo *infoDis2 = g_file_query_filesystem_info(fileDis2,"*",nullptr,nullptr);
                         totalDis2 = g_file_info_get_attribute_uint64(infoDis2,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 
                         if(findGDriveList()->size() == 1)
@@ -365,7 +365,7 @@ void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason)
                             newarea(DisNum,g_drive_get_name(cacheDrive),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1)),
-                                    NULL,NULL, totalDis1,totalDis2,NULL,NULL, UDiskPathDis1,UDiskPathDis2,NULL,NULL,1);
+                                    nullptr,nullptr, totalDis1,totalDis2,nullptr,nullptr, UDiskPathDis1,UDiskPathDis2,nullptr,nullptr,1);
                         }
 
                         else if(num == 1)
@@ -373,7 +373,7 @@ void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason)
                             newarea(DisNum,g_drive_get_name(cacheDrive),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1)),
-                                    NULL,NULL, totalDis1,totalDis2,NULL,NULL, UDiskPathDis1,UDiskPathDis2,NULL,NULL,1);
+                                    nullptr,nullptr, totalDis1,totalDis2,nullptr,nullptr, UDiskPathDis1,UDiskPathDis2,nullptr,nullptr,1);
                         }
 
                         else
@@ -381,7 +381,7 @@ void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason)
                             newarea(DisNum,g_drive_get_name(cacheDrive),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1)),
-                                    NULL,NULL, totalDis1,totalDis2,NULL,NULL, UDiskPathDis1,UDiskPathDis2,NULL,NULL,2);
+                                    nullptr,nullptr, totalDis1,totalDis2,nullptr,nullptr, UDiskPathDis1,UDiskPathDis2,nullptr,nullptr,2);
                         }
 
                     }
@@ -393,21 +393,21 @@ void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason)
                         QByteArray dateDis1 = UDiskPathDis1.toLocal8Bit();
                         char *p_ChangeDis1 = dateDis1.data();
                         GFile *fileDis1 = g_file_new_for_path(p_ChangeDis1);
-                        GFileInfo *infoDis1 = g_file_query_filesystem_info(fileDis1,"*",NULL,NULL);
+                        GFileInfo *infoDis1 = g_file_query_filesystem_info(fileDis1,"*",nullptr,nullptr);
                         totalDis1 = g_file_info_get_attribute_uint64(infoDis1,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 
                         UDiskPathDis2 = g_file_get_path(g_mount_get_root(g_volume_get_mount((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1))));
                         QByteArray dateDis2 = UDiskPathDis2.toLocal8Bit();
                         char *p_ChangeDis2 = dateDis2.data();
                         GFile *fileDis2 = g_file_new_for_path(p_ChangeDis2);
-                        GFileInfo *infoDis2 = g_file_query_filesystem_info(fileDis2,"*",NULL,NULL);
+                        GFileInfo *infoDis2 = g_file_query_filesystem_info(fileDis2,"*",nullptr,nullptr);
                         totalDis2 = g_file_info_get_attribute_uint64(infoDis2,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 
                         UDiskPathDis3 = g_file_get_path(g_mount_get_root(g_volume_get_mount((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),2))));
                         QByteArray dateDis3 = UDiskPathDis3.toLocal8Bit();
                         char *p_ChangeDis3 = dateDis3.data();
                         GFile *fileDis3 = g_file_new_for_path(p_ChangeDis3);
-                        GFileInfo *infoDis3 = g_file_query_filesystem_info(fileDis3,"*",NULL,NULL);
+                        GFileInfo *infoDis3 = g_file_query_filesystem_info(fileDis3,"*",nullptr,nullptr);
                         totalDis3 = g_file_info_get_attribute_uint64(infoDis3,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
                         if(findGDriveList()->size() == 1)
                         {
@@ -415,7 +415,7 @@ void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason)
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),2)),
-                                    NULL, totalDis1,totalDis2,totalDis3,NULL, UDiskPathDis1,UDiskPathDis2,UDiskPathDis3,NULL,1);
+                                    nullptr, totalDis1,totalDis2,totalDis3,nullptr, UDiskPathDis1,UDiskPathDis2,UDiskPathDis3,nullptr,1);
                         }
 
                         else if(num == 1)
@@ -424,7 +424,7 @@ void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason)
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),2)),
-                                    NULL, totalDis1,totalDis2,totalDis3,NULL, UDiskPathDis1,UDiskPathDis2,UDiskPathDis3,NULL,1);
+                                    nullptr, totalDis1,totalDis2,totalDis3,nullptr, UDiskPathDis1,UDiskPathDis2,UDiskPathDis3,nullptr,1);
                         }
 
                         else
@@ -433,7 +433,7 @@ void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason)
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),2)),
-                                    NULL, totalDis1,totalDis2,totalDis3,NULL, UDiskPathDis1,UDiskPathDis2,UDiskPathDis3,NULL,2);
+                                    nullptr, totalDis1,totalDis2,totalDis3,nullptr, UDiskPathDis1,UDiskPathDis2,UDiskPathDis3,nullptr,2);
                         }
 
                     }
@@ -445,28 +445,28 @@ void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason)
                         QByteArray dateDis1 = UDiskPathDis1.toLocal8Bit();
                         char *p_ChangeDis1 = dateDis1.data();
                         GFile *fileDis1 = g_file_new_for_path(p_ChangeDis1);
-                        GFileInfo *infoDis1 = g_file_query_filesystem_info(fileDis1,"*",NULL,NULL);
+                        GFileInfo *infoDis1 = g_file_query_filesystem_info(fileDis1,"*",nullptr,nullptr);
                         totalDis1 = g_file_info_get_attribute_uint64(infoDis1,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 
                         UDiskPathDis2 = g_file_get_path(g_mount_get_root(g_volume_get_mount((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1))));
                         QByteArray dateDis2 = UDiskPathDis2.toLocal8Bit();
                         char *p_ChangeDis2 = dateDis2.data();
                         GFile *fileDis2 = g_file_new_for_path(p_ChangeDis2);
-                        GFileInfo *infoDis2 = g_file_query_filesystem_info(fileDis2,"*",NULL,NULL);
+                        GFileInfo *infoDis2 = g_file_query_filesystem_info(fileDis2,"*",nullptr,nullptr);
                         totalDis2 = g_file_info_get_attribute_uint64(infoDis2,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 
                         UDiskPathDis3 = g_file_get_path(g_mount_get_root(g_volume_get_mount((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),2))));
                         QByteArray dateDis3 = UDiskPathDis3.toLocal8Bit();
                         char *p_ChangeDis3 = dateDis3.data();
                         GFile *fileDis3 = g_file_new_for_path(p_ChangeDis3);
-                        GFileInfo *infoDis3 = g_file_query_filesystem_info(fileDis3,"*",NULL,NULL);
+                        GFileInfo *infoDis3 = g_file_query_filesystem_info(fileDis3,"*",nullptr,nullptr);
                         totalDis3 = g_file_info_get_attribute_uint64(infoDis3,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 
                         UDiskPathDis4 = g_file_get_path(g_mount_get_root(g_volume_get_mount((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),3))));
                         QByteArray dateDis4 = UDiskPathDis4.toLocal8Bit();
                         char *p_ChangeDis4 = dateDis4.data();
                         GFile *fileDis4 = g_file_new_for_path(p_ChangeDis4);
-                        GFileInfo *infoDis4 = g_file_query_filesystem_info(fileDis4,"*",NULL,NULL);
+                        GFileInfo *infoDis4 = g_file_query_filesystem_info(fileDis4,"*",nullptr,nullptr);
                         totalDis4 = g_file_info_get_attribute_uint64(infoDis4,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 
                         if(findGDriveList()->size() == 1)
@@ -505,15 +505,15 @@ void MainWindow::iconActivated(QSystemTrayIcon::ActivationReason reason)
                         qDebug()<<"相应信号";
                         g_drive_eject_with_operation(cacheDrive,
                                      G_MOUNT_UNMOUNT_NONE,
-                                     NULL,
-                                     NULL,
+                                     nullptr,
+                                     nullptr,
                                      GAsyncReadyCallback(frobnitz_result_func),
                                      this);
                         this->hide();
-                        ejectInterface *ForEject = new ejectInterface(NULL,g_drive_get_name(cacheDrive));
+                        ejectInterface *ForEject = new ejectInterface(nullptr,g_drive_get_name(cacheDrive));
                         ForEject->show();
                         QLayoutItem* item;
-                        while ((item = this->vboxlayout->takeAt(0)) != NULL)
+                        while ((item = this->vboxlayout->takeAt(0)) != nullptr)
                         {
                             delete item->widget();
                             delete item;
@@ -560,7 +560,7 @@ void MainWindow::newarea(int No,
                          QString pathDis4,
                          int linestatus)
 {
-    open_widget = new QClickWidget(NULL,No,Drivename,nameDis1,nameDis2,nameDis3,nameDis4,
+    open_widget = new QClickWidget(nullptr,No,Drivename,nameDis1,nameDis2,nameDis3,nameDis4,
                                    capacityDis1,capacityDis2,capacityDis3,capacityDis4,
                                    pathDis1,pathDis2,pathDis3,pathDis4);
     //open_widget->;
@@ -826,7 +826,7 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
 void MainWindow::moveBottomDirect(GDrive *drive)
 {
-//    ejectInterface *ForEject = new ejectInterface(NULL,g_drive_get_name(drive));
+//    ejectInterface *ForEject = new ejectInterface(nullptr,g_drive_get_name(drive));
 //    int screenNum = QGuiApplication::screens().count();
 //    int panelHeight = getPanelHeight("PanelHeight");
 //    int position =0;
@@ -916,10 +916,10 @@ void MainWindow::moveBottomDirect(GDrive *drive)
 void MainWindow::MainWindowShow()
 {
     int num = 0;
-    if  ( this->vboxlayout != NULL )
+    if  ( this->vboxlayout != nullptr )
     {
         QLayoutItem* item;
-        while ((item = this->vboxlayout->takeAt(0)) != NULL)
+        while ((item = this->vboxlayout->takeAt(0)) != nullptr)
         {
             delete item->widget();
             delete item;
@@ -952,25 +952,25 @@ void MainWindow::MainWindowShow()
                        QByteArray date = UDiskPathDis1.toLocal8Bit();
                        char *p_Change = date.data();
                        GFile *file = g_file_new_for_path(p_Change);
-                       GFileInfo *info = g_file_query_filesystem_info(file,"*",NULL,NULL);
+                       GFileInfo *info = g_file_query_filesystem_info(file,"*",nullptr,nullptr);
                        totalDis1 = g_file_info_get_attribute_uint64(info,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
                        if(findGDriveList()->size() == 1)
                        {
                            newarea(DisNum,g_drive_get_name(cacheDrive),
                                    g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
-                                   NULL,NULL,NULL, totalDis1,NULL,NULL,NULL, UDiskPathDis1,NULL,NULL,NULL,1);
+                                   nullptr,nullptr,nullptr, totalDis1,nullptr,nullptr,nullptr, UDiskPathDis1,nullptr,nullptr,nullptr,1);
                        }
                        else if(num == 1)
                        {
                            newarea(DisNum,g_drive_get_name(cacheDrive),
                                    g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
-                                   NULL,NULL,NULL, totalDis1,NULL,NULL,NULL, UDiskPathDis1,NULL,NULL,NULL,1);
+                                   nullptr,nullptr,nullptr, totalDis1,nullptr,nullptr,nullptr, UDiskPathDis1,nullptr,nullptr,nullptr,1);
                        }
                        else
                        {
                            newarea(DisNum,g_drive_get_name(cacheDrive),
                                    g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
-                                   NULL,NULL,NULL,totalDis1,NULL,NULL,NULL, UDiskPathDis1,NULL,NULL,NULL, 2);
+                                   nullptr,nullptr,nullptr,totalDis1,nullptr,nullptr,nullptr, UDiskPathDis1,nullptr,nullptr,nullptr, 2);
                        }
                     }
                     if(DisNum == 2)
@@ -981,14 +981,14 @@ void MainWindow::MainWindowShow()
                         QByteArray dateDis1 = UDiskPathDis1.toLocal8Bit();
                         char *p_ChangeDis1 = dateDis1.data();
                         GFile *fileDis1 = g_file_new_for_path(p_ChangeDis1);
-                        GFileInfo *infoDis1 = g_file_query_filesystem_info(fileDis1,"*",NULL,NULL);
+                        GFileInfo *infoDis1 = g_file_query_filesystem_info(fileDis1,"*",nullptr,nullptr);
                         totalDis1 = g_file_info_get_attribute_uint64(infoDis1,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 
                         UDiskPathDis2 = g_file_get_path(g_mount_get_root(g_volume_get_mount((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1))));
                         QByteArray dateDis2 = UDiskPathDis2.toLocal8Bit();
                         char *p_ChangeDis2 = dateDis2.data();
                         GFile *fileDis2 = g_file_new_for_path(p_ChangeDis2);
-                        GFileInfo *infoDis2 = g_file_query_filesystem_info(fileDis2,"*",NULL,NULL);
+                        GFileInfo *infoDis2 = g_file_query_filesystem_info(fileDis2,"*",nullptr,nullptr);
                         totalDis2 = g_file_info_get_attribute_uint64(infoDis2,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 
                         if(findGDriveList()->size() == 1)
@@ -996,7 +996,7 @@ void MainWindow::MainWindowShow()
                             newarea(DisNum,g_drive_get_name(cacheDrive),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1)),
-                                    NULL,NULL, totalDis1,totalDis2,NULL,NULL, UDiskPathDis1,UDiskPathDis2,NULL,NULL,1);
+                                    nullptr,nullptr, totalDis1,totalDis2,nullptr,nullptr, UDiskPathDis1,UDiskPathDis2,nullptr,nullptr,1);
                         }
 
                         else if(num == 1)
@@ -1004,7 +1004,7 @@ void MainWindow::MainWindowShow()
                             newarea(DisNum,g_drive_get_name(cacheDrive),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1)),
-                                    NULL,NULL, totalDis1,totalDis2,NULL,NULL, UDiskPathDis1,UDiskPathDis2,NULL,NULL,1);
+                                    nullptr,nullptr, totalDis1,totalDis2,nullptr,nullptr, UDiskPathDis1,UDiskPathDis2,nullptr,nullptr,1);
                         }
 
                         else
@@ -1012,7 +1012,7 @@ void MainWindow::MainWindowShow()
                             newarea(DisNum,g_drive_get_name(cacheDrive),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1)),
-                                    NULL,NULL, totalDis1,totalDis2,NULL,NULL, UDiskPathDis1,UDiskPathDis2,NULL,NULL,2);
+                                    nullptr,nullptr, totalDis1,totalDis2,nullptr,nullptr, UDiskPathDis1,UDiskPathDis2,nullptr,nullptr,2);
                         }
 
                     }
@@ -1024,21 +1024,21 @@ void MainWindow::MainWindowShow()
                         QByteArray dateDis1 = UDiskPathDis1.toLocal8Bit();
                         char *p_ChangeDis1 = dateDis1.data();
                         GFile *fileDis1 = g_file_new_for_path(p_ChangeDis1);
-                        GFileInfo *infoDis1 = g_file_query_filesystem_info(fileDis1,"*",NULL,NULL);
+                        GFileInfo *infoDis1 = g_file_query_filesystem_info(fileDis1,"*",nullptr,nullptr);
                         totalDis1 = g_file_info_get_attribute_uint64(infoDis1,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 
                         UDiskPathDis2 = g_file_get_path(g_mount_get_root(g_volume_get_mount((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1))));
                         QByteArray dateDis2 = UDiskPathDis2.toLocal8Bit();
                         char *p_ChangeDis2 = dateDis2.data();
                         GFile *fileDis2 = g_file_new_for_path(p_ChangeDis2);
-                        GFileInfo *infoDis2 = g_file_query_filesystem_info(fileDis2,"*",NULL,NULL);
+                        GFileInfo *infoDis2 = g_file_query_filesystem_info(fileDis2,"*",nullptr,nullptr);
                         totalDis2 = g_file_info_get_attribute_uint64(infoDis2,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 
                         UDiskPathDis3 = g_file_get_path(g_mount_get_root(g_volume_get_mount((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),2))));
                         QByteArray dateDis3 = UDiskPathDis3.toLocal8Bit();
                         char *p_ChangeDis3 = dateDis3.data();
                         GFile *fileDis3 = g_file_new_for_path(p_ChangeDis3);
-                        GFileInfo *infoDis3 = g_file_query_filesystem_info(fileDis3,"*",NULL,NULL);
+                        GFileInfo *infoDis3 = g_file_query_filesystem_info(fileDis3,"*",nullptr,nullptr);
                         totalDis3 = g_file_info_get_attribute_uint64(infoDis3,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
                         if(findGDriveList()->size() == 1)
                         {
@@ -1046,7 +1046,7 @@ void MainWindow::MainWindowShow()
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),2)),
-                                    NULL, totalDis1,totalDis2,totalDis3,NULL, UDiskPathDis1,UDiskPathDis2,UDiskPathDis3,NULL,1);
+                                    nullptr, totalDis1,totalDis2,totalDis3,nullptr, UDiskPathDis1,UDiskPathDis2,UDiskPathDis3,nullptr,1);
                         }
 
                         else if(num == 1)
@@ -1055,7 +1055,7 @@ void MainWindow::MainWindowShow()
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),2)),
-                                    NULL, totalDis1,totalDis2,totalDis3,NULL, UDiskPathDis1,UDiskPathDis2,UDiskPathDis3,NULL,1);
+                                    nullptr, totalDis1,totalDis2,totalDis3,nullptr, UDiskPathDis1,UDiskPathDis2,UDiskPathDis3,nullptr,1);
                         }
 
                         else
@@ -1064,7 +1064,7 @@ void MainWindow::MainWindowShow()
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),0)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1)),
                                     g_volume_get_name((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),2)),
-                                    NULL, totalDis1,totalDis2,totalDis3,NULL, UDiskPathDis1,UDiskPathDis2,UDiskPathDis3,NULL,2);
+                                    nullptr, totalDis1,totalDis2,totalDis3,nullptr, UDiskPathDis1,UDiskPathDis2,UDiskPathDis3,nullptr,2);
                         }
 
                     }
@@ -1076,28 +1076,28 @@ void MainWindow::MainWindowShow()
                         QByteArray dateDis1 = UDiskPathDis1.toLocal8Bit();
                         char *p_ChangeDis1 = dateDis1.data();
                         GFile *fileDis1 = g_file_new_for_path(p_ChangeDis1);
-                        GFileInfo *infoDis1 = g_file_query_filesystem_info(fileDis1,"*",NULL,NULL);
+                        GFileInfo *infoDis1 = g_file_query_filesystem_info(fileDis1,"*",nullptr,nullptr);
                         totalDis1 = g_file_info_get_attribute_uint64(infoDis1,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 
                         UDiskPathDis2 = g_file_get_path(g_mount_get_root(g_volume_get_mount((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),1))));
                         QByteArray dateDis2 = UDiskPathDis2.toLocal8Bit();
                         char *p_ChangeDis2 = dateDis2.data();
                         GFile *fileDis2 = g_file_new_for_path(p_ChangeDis2);
-                        GFileInfo *infoDis2 = g_file_query_filesystem_info(fileDis2,"*",NULL,NULL);
+                        GFileInfo *infoDis2 = g_file_query_filesystem_info(fileDis2,"*",nullptr,nullptr);
                         totalDis2 = g_file_info_get_attribute_uint64(infoDis2,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 
                         UDiskPathDis3 = g_file_get_path(g_mount_get_root(g_volume_get_mount((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),2))));
                         QByteArray dateDis3 = UDiskPathDis3.toLocal8Bit();
                         char *p_ChangeDis3 = dateDis3.data();
                         GFile *fileDis3 = g_file_new_for_path(p_ChangeDis3);
-                        GFileInfo *infoDis3 = g_file_query_filesystem_info(fileDis3,"*",NULL,NULL);
+                        GFileInfo *infoDis3 = g_file_query_filesystem_info(fileDis3,"*",nullptr,nullptr);
                         totalDis3 = g_file_info_get_attribute_uint64(infoDis3,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 
                         UDiskPathDis4 = g_file_get_path(g_mount_get_root(g_volume_get_mount((GVolume *)g_list_nth_data(g_drive_get_volumes(cacheDrive),3))));
                         QByteArray dateDis4 = UDiskPathDis4.toLocal8Bit();
                         char *p_ChangeDis4 = dateDis4.data();
                         GFile *fileDis4 = g_file_new_for_path(p_ChangeDis4);
-                        GFileInfo *infoDis4 = g_file_query_filesystem_info(fileDis4,"*",NULL,NULL);
+                        GFileInfo *infoDis4 = g_file_query_filesystem_info(fileDis4,"*",nullptr,nullptr);
                         totalDis4 = g_file_info_get_attribute_uint64(infoDis4,G_FILE_ATTRIBUTE_FILESYSTEM_SIZE);
 
                         if(findGDriveList()->size() == 1)
@@ -1137,8 +1137,8 @@ void MainWindow::MainWindowShow()
 
                         g_drive_eject_with_operation(cacheDrive,
                                      G_MOUNT_UNMOUNT_NONE,
-                                     NULL,
-                                     NULL,
+                                     nullptr,
+                                     nullptr,
                                      GAsyncReadyCallback(frobnitz_result_func),
                                      this);
 
@@ -1146,7 +1146,7 @@ void MainWindow::MainWindowShow()
                         qDebug()<<"findGDriveList()->size():"<<findGDriveList()->size();
                         this->hide();
                         QLayoutItem* item;
-                        while ((item = this->vboxlayout->takeAt(0)) != NULL)
+                        while ((item = this->vboxlayout->takeAt(0)) != nullptr)
                         {
                             delete item->widget();
                             delete item;
@@ -1173,7 +1173,7 @@ void MainWindow::MainWindowShow()
 //        }
     ui->centralWidget->show();
     interfaceHideTime->setTimerType(Qt::PreciseTimer);
-    if(ui->centralWidget != NULL)
+    if(ui->centralWidget != nullptr)
     {
         connect(interfaceHideTime, SIGNAL(timeout()), this, SLOT(on_Maininterface_hide()));
     }

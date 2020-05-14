@@ -49,7 +49,7 @@ class XdgMenuApplinkProcessor : public QObject
 {
     Q_OBJECT
 public:
-    explicit XdgMenuApplinkProcessor(QDomElement& element, XdgMenu* menu, XdgMenuApplinkProcessor *parent = NULL);
+    explicit XdgMenuApplinkProcessor(QDomElement& element, XdgMenu* menu, XdgMenuApplinkProcessor *parent = nullptr);
     ~XdgMenuApplinkProcessor() override;
     void run();
 

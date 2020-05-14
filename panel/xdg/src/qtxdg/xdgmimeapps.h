@@ -42,7 +42,7 @@ public:
     /*!
      * \brief XdgMimeApps constructor
      */
-    explicit XdgMimeApps(QObject *parent = NULL);
+    explicit XdgMimeApps(QObject *parent = nullptr);
 
     /*!
       * \brief XdgMimeApps destructor

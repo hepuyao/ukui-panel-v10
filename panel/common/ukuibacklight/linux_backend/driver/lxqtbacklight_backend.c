@@ -37,7 +37,7 @@
 static void set_bl_power(const char *driver, int value)
 {
     FILE *out = open_driver_file("bl_power", driver, "w");
-    if( out != NULL ) {
+    if( out != nullptr ) {
         fprintf(out, "%d", value);
         fclose(out);
     }
@@ -48,7 +48,7 @@ static void set_backlight(const char *driver, int value)
 {
     if(value>0) {
         FILE *out = open_driver_file("brightness", driver, "w");
-        if( out != NULL ) {
+        if( out != nullptr ) {
             fprintf(out, "%d", value);
             fclose(out);
         }
@@ -68,7 +68,7 @@ static char *get_driver()
 static void show_blacklight()
 {
     char *driver = get_driver();
-    if( driver == NULL ) {
+    if( driver == nullptr ) {
         return;
     }
     int max_value = read_max_backlight(driver);
@@ -80,7 +80,7 @@ static void show_blacklight()
 static void change_blacklight(int value, int percent_ok)
 {
     char *driver = get_driver();
-    if( driver == NULL ) {
+    if( driver == nullptr ) {
         return;
     }
     int max_value = read_max_backlight(driver);
@@ -100,7 +100,7 @@ static void change_blacklight(int value, int percent_ok)
 static void increases_blacklight()
 {
     char *driver = get_driver();
-    if( driver == NULL ) {
+    if( driver == nullptr ) {
         return;
     }
     int max_value = read_max_backlight(driver);
@@ -120,7 +120,7 @@ static void increases_blacklight()
 static void decreases_blacklight()
 {
     char *driver = get_driver();
-    if( driver == NULL ) {
+    if( driver == nullptr ) {
         return;
     }
     int max_value = read_max_backlight(driver);
@@ -142,7 +142,7 @@ static void set_backlight_from_stdin()
     char *driver = get_driver();
     int ok = True, value;
     int max_value = read_max_backlight(driver);
-    if( driver == NULL ) {
+    if( driver == nullptr ) {
         return;
     }
     while(ok && !feof(stdin)) {

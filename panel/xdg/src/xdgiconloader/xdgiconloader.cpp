@@ -141,7 +141,7 @@ Q_GLOBAL_STATIC(QFileSystemWatcher, gtkCachesWatcher)
 
 QIconCacheGtkReader::QIconCacheGtkReader(const QString &dirName)
     : m_cacheFileInfo{dirName + QLatin1String("/icon-theme.cache")}
-    , m_data(NULL)
+    , m_data(nullptr)
     , m_isValid(false)
 {
     m_file.setFileName(m_cacheFileInfo.absoluteFilePath());
@@ -729,7 +729,7 @@ QIconLoaderEngineEntry *XdgIconLoaderEngine::entryForSize(const QSize &size, int
 
     // Find the minimum distance icon
     int minimalSize = INT_MAX;
-    QIconLoaderEngineEntry *closestMatch = NULL;
+    QIconLoaderEngineEntry *closestMatch = nullptr;
     for (int i = 0; i < numEntries; ++i) {
         QIconLoaderEngineEntry *entry = m_info.entries.at(i);
         int distance = directorySizeDistance(entry->dir, iconsize, scale);
@@ -765,7 +765,7 @@ QSize XdgIconLoaderEngine::actualSize(const QSize &size, QIcon::Mode mode,
             //Note: fallback for directories that don't have its content size defined
             //  -> get the actual size based on the image if possible
             PixmapEntry * pix_e;
-            if (0 == dir_size && NULL != (pix_e = dynamic_cast<PixmapEntry *>(entry)))
+            if (0 == dir_size && nullptr != (pix_e = dynamic_cast<PixmapEntry *>(entry)))
             {
                 QSize pix_size = pix_e->basePixmap.size();
                 dir_size = qMin(pix_size.width(), pix_size.height());

@@ -41,7 +41,7 @@ class SpacerConfiguration : public UKUIPanelPluginConfigDialog
     Q_OBJECT
 
 public:
-    explicit SpacerConfiguration(PluginSettings *settings, QWidget *parent = NULL);
+    explicit SpacerConfiguration(PluginSettings *settings, QWidget *parent = nullptr);
     ~SpacerConfiguration();
 
 public:

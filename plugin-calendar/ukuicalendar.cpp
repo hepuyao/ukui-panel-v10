@@ -72,8 +72,8 @@ IndicatorCalendar::IndicatorCalendar(const IUKUIPanelPluginStartupInfo &startupI
     mbHasCreatedWebView(false),
     mViewWidht(WEBVIEW_WIDTH),
     mViewHeight(0),
-    mPopupContent(NULL),
-    mWebViewDiag(NULL)
+    mPopupContent(nullptr),
+    mWebViewDiag(nullptr)
 {
 
     mMainWidget = new QWidget();
@@ -156,23 +156,23 @@ IndicatorCalendar::IndicatorCalendar(const IUKUIPanelPluginStartupInfo &startupI
 
 IndicatorCalendar::~IndicatorCalendar()
 {
-    if(mMainWidget != NULL)
+    if(mMainWidget != nullptr)
     {
         mMainWidget->deleteLater();
     }
-    if(mWebViewDiag != NULL)
+    if(mWebViewDiag != nullptr)
     {
         mWebViewDiag->deleteLater();
     }
-    if(mRotatedWidget != NULL)
+    if(mRotatedWidget != nullptr)
     {
         mRotatedWidget->deleteLater();
     }
-    if(mContent != NULL)
+    if(mContent != nullptr)
     {
         mContent->deleteLater();
     }
-    if(mPopupContent != NULL)
+    if(mPopupContent != nullptr)
     {
         mPopupContent->deleteLater();
     }
@@ -607,7 +607,7 @@ void IndicatorCalendar::initializeCalendar()
         }
     }
 
-    if(mWebViewDiag != NULL )
+    if(mWebViewDiag != nullptr )
     {
         if(!mbHasCreatedWebView)
         {
@@ -620,7 +620,7 @@ void IndicatorCalendar::initializeCalendar()
 
 void IndicatorCalendar::activated(ActivationReason reason)
 {
-    if(mWebViewDiag != NULL )
+    if(mWebViewDiag != nullptr )
     {
 //        QString  htmlFilePath = QLatin1String(PACKAGE_DATA_DIR);
 //        htmlFilePath = QLatin1String("file://") + htmlFilePath + QLatin1String("/plugin-calendar/html/ukui.html");
@@ -645,7 +645,7 @@ void IndicatorCalendar::activated(ActivationReason reason)
 
 void IndicatorCalendar::deletePopup()
 {
-    mPopupContent = NULL;
+    mPopupContent = nullptr;
 }
 
 void IndicatorCalendar::hidewebview()
@@ -824,7 +824,7 @@ void IndicatorCalendar::setTimeShowStyle()
 
 void IndicatorCalendar::setbackground()
 {
-    GSettings *settings = NULL;
+    GSettings *settings = nullptr;
     QString str;
     char *path;
     char color_hex[10];

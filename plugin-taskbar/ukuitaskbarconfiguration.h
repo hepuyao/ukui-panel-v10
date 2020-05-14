@@ -41,7 +41,7 @@ class UKUITaskbarConfiguration : public UKUIPanelPluginConfigDialog
     Q_OBJECT
 
 public:
-    explicit UKUITaskbarConfiguration(PluginSettings *settings, QWidget *parent = NULL);
+    explicit UKUITaskbarConfiguration(PluginSettings *settings, QWidget *parent = nullptr);
     ~UKUITaskbarConfiguration();
 
 private:

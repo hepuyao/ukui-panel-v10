@@ -211,7 +211,7 @@ void PluginSettings::loadFromCache()
     d->mSettings->endGroup();
 }
 
-PluginSettings* PluginSettingsFactory::create(UKUi::Settings *settings, const QString &group, QObject *parent/* = NULL*/)
+PluginSettings* PluginSettingsFactory::create(UKUi::Settings *settings, const QString &group, QObject *parent/* = nullptr*/)
 {
     return new PluginSettings{settings, group, parent};
 }

@@ -37,7 +37,7 @@
 PanelPluginsModel::PanelPluginsModel(UKUIPanel * panel,
                                      QString const & namesKey,
                                      QStringList const & desktopDirs,
-                                     QObject * parent/* = NULL*/)
+                                     QObject * parent/* = nullptr*/)
     : QAbstractListModel{parent},
     mNamesKey(namesKey),
     mPanel(panel)
@@ -113,7 +113,7 @@ Plugin* PanelPluginsModel::pluginByName(QString name) const
     for (auto const & p : mPlugins)
         if (p.first == name)
             return p.second.data();
-    return NULL;
+    return nullptr;
 }
 
 Plugin const * PanelPluginsModel::pluginByID(QString id) const
@@ -124,7 +124,7 @@ Plugin const * PanelPluginsModel::pluginByID(QString id) const
         if (plugin && plugin->desktopFile().id() == id)
             return plugin;
     }
-    return NULL;
+    return nullptr;
 }
 
 void PanelPluginsModel::addPlugin(const UKUi::PluginInfo &desktopFile)
@@ -153,9 +153,9 @@ void PanelPluginsModel::removePlugin(pluginslist_t::iterator plugin)
         beginRemoveRows(QModelIndex(), row, row);
         mPlugins.erase(plugin);
         endRemoveRows();
-        emit pluginRemoved(p); // p can be NULL
+        emit pluginRemoved(p); // p can be nullptr
         mPanel->settings()->setValue(mNamesKey, pluginNames());
-        if (NULL != p)
+        if (nullptr != p)
             p->deleteLater();
     }
 }
@@ -224,7 +224,7 @@ qDebug()<<"desktopDirs  =  "<<desktopDirs<<endl;
 #endif
     for (auto const & name : plugin_names)
     {
-        pluginslist_t::iterator i = mPlugins.insert(mPlugins.end(), {name, NULL});
+        pluginslist_t::iterator i = mPlugins.insert(mPlugins.end(), {name, nullptr});
         QString type = mPanel->settings()->value(name + "/type").toString();
         if (type.isEmpty())
         {
@@ -277,7 +277,7 @@ QPointer<Plugin> PanelPluginsModel::loadPlugin(UKUi::PluginInfo const & desktopF
         return plugin.release();
     }
 
-    return NULL;
+    return nullptr;
 }
 
 QString PanelPluginsModel::findNewPluginSettingsGroup(const QString &pluginType) const
@@ -358,7 +358,7 @@ void PanelPluginsModel::onConfigurePlugin(QModelIndex const & index)
         return;
 
     Plugin * const plugin = mPlugins[index.row()].second.data();
-    if (NULL != plugin && (IUKUIPanelPlugin::HaveConfigDialog & plugin->iPlugin()->flags()))
+    if (nullptr != plugin && (IUKUIPanelPlugin::HaveConfigDialog & plugin->iPlugin()->flags()))
         plugin->showConfigureDialog();
 }
 

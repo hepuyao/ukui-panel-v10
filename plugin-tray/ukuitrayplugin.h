@@ -64,7 +64,7 @@ public:
         // Currently only X11 supported
         if (!QX11Info::connection()) {
             qWarning() << "Currently tray plugin supports X11 only. Skipping.";
-            return NULL;
+            return nullptr;
         }
         return new UKUITrayPlugin(startupInfo);
     }

@@ -138,7 +138,7 @@ UKUIPanel::UKUIPanel(const QString &configGroup, UKUi::Settings *settings, QWidg
     QFrame(parent),
     mSettings(settings),
     mConfigGroup(configGroup),
-    mPlugins{NULL},
+    mPlugins{nullptr},
     mStandaloneWindows{new WindowNotifier},
     mPanelSize(0),
     mIconSize(0),
@@ -153,7 +153,7 @@ UKUIPanel::UKUIPanel(const QString &configGroup, UKUi::Settings *settings, QWidg
     mHidden(false),
     mAnimationTime(0),
     mReserveSpace(true),
-    mAnimation(NULL),
+    mAnimation(nullptr),
     mLockPanel(false)
 {
     qDebug()<<"ukuipanel.cpp begin";
@@ -545,7 +545,7 @@ void UKUIPanel::setPanelGeometry(bool animate)
         setFixedSize(rect.size());
         if (animate)
         {
-            if (mAnimation == NULL)
+            if (mAnimation == nullptr)
             {
                 mAnimation = new QPropertyAnimation(this, "geometry");
                 mAnimation->setEasingCurve(QEasingCurve::Linear);
@@ -762,7 +762,7 @@ int UKUIPanel::findAvailableScreen(UKUIPanel::Position position)
 void UKUIPanel::showConfigDialog()
 {
     //    if (mConfigDialog.isNull())
-    //        mConfigDialog = new ConfigPanelDialog(this, NULL /*make it top level window*/);
+    //        mConfigDialog = new ConfigPanelDialog(this, nullptr /*make it top level window*/);
 
     //    mConfigDialog->showConfigPanelPage();
     //    mStandaloneWindows->observeWindow(mConfigDialog.data());
@@ -774,7 +774,7 @@ void UKUIPanel::showConfigDialog()
     //    KWindowSystem::activateWindow(wid);
     //    KWindowSystem::setOnDesktop(wid, KWindowSystem::currentDesktop());
 
-    mConfigDialog = new ConfigPanelDialog(this, NULL);
+    mConfigDialog = new ConfigPanelDialog(this, nullptr);
     mConfigDialog->show();
     //mConfigWidget->positionChanged();
 
@@ -787,7 +787,7 @@ void UKUIPanel::showConfigDialog()
 void UKUIPanel::showAddPluginDialog()
 {
     if (mConfigDialog.isNull())
-        mConfigDialog = new ConfigPanelDialog(this, NULL /*make it top level window*/);
+        mConfigDialog = new ConfigPanelDialog(this, nullptr /*make it top level window*/);
 
     mConfigDialog->showConfigPluginsPage();
     mStandaloneWindows->observeWindow(mConfigDialog.data());
@@ -860,7 +860,7 @@ void UKUIPanel::updateStyleSheet()
 
     //    }
     //   sheet << QString("UKUIPanel #BackgroundWidget { background-color: rgba(8,10,12,90%); }");
-    //        GSettings *settings = NULL;
+    //        GSettings *settings = nullptr;
     //        QString str;
     //        char *path;
     //        char color_hex[10];
@@ -1325,7 +1325,7 @@ Plugin* UKUIPanel::findPlugin(const IUKUIPanelPlugin* iPlugin) const
     for (auto const & plug : plugins)
         if (plug->iPlugin() == iPlugin)
             return plug;
-    return NULL;
+    return nullptr;
 }
 
 /************************************************
@@ -1382,7 +1382,7 @@ QRect UKUIPanel::calculatePopupWindowPos(QPoint const & absolutePos, QSize const
 QRect UKUIPanel::calculatePopupWindowPos(const IUKUIPanelPlugin *plugin, const QSize &windowSize) const
 {
     Plugin *panel_plugin = findPlugin(plugin);
-    if (NULL == panel_plugin)
+    if (nullptr == panel_plugin)
     {
         qWarning() << Q_FUNC_INFO << "Wrong logic? Unable to find Plugin* for" << plugin << "known plugins follow...";
         const auto plugins = mPlugins->plugins();
@@ -1583,7 +1583,7 @@ void UKUIPanel::updateConfigDialog() const
 bool UKUIPanel::isPluginSingletonAndRunnig(QString const & pluginId) const
 {
     Plugin const * plugin = mPlugins->pluginByID(pluginId);
-    if (NULL == plugin)
+    if (nullptr == plugin)
         return false;
     else
         return plugin->iPlugin()->flags().testFlag(IUKUIPanelPlugin::SingleInstance);
@@ -1652,7 +1652,7 @@ void UKUIPanel::panelBackgroundChange()
     qDebug()<<"panel background change ***";
     if(mConfigDialog.isNull())
     {
-        mConfigDialog = new ConfigPanelDialog(this, NULL);
+        mConfigDialog = new ConfigPanelDialog(this, nullptr);
     }
     mConfigDialog->backgroundChange();
 }

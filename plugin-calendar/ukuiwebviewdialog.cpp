@@ -35,7 +35,7 @@
 
 UkuiWebviewDialog::UkuiWebviewDialog(QWidget *parent) :
     QDialog(parent, Qt::Popup),
-    mWebView(NULL),
+    mWebView(nullptr),
     ui(new Ui::UkuiWebviewDialog)
 {
     ui->setupUi(this);
@@ -44,10 +44,10 @@ UkuiWebviewDialog::UkuiWebviewDialog(QWidget *parent) :
 UkuiWebviewDialog::~UkuiWebviewDialog()
 {
     delete ui;
-    if(mWebView != NULL)
+    if(mWebView != nullptr)
     {
         mWebView->deleteLater();
-        mWebView = NULL;
+        mWebView = nullptr;
     }
 }
 
@@ -64,7 +64,7 @@ void UkuiWebviewDialog::creatwebview(int _mode)
     {
         //deletePopup();
     }
-    if(mWebView != NULL)
+    if(mWebView != nullptr)
     {
         QString  htmlFilePath = QLatin1String(PACKAGE_DATA_DIR);
         if (QLocale::system().name() == "zh_CN")

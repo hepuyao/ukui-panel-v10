@@ -111,7 +111,7 @@ void ConfigPluginsWidget::resetButtons()
     {
         Plugin const * plugin
             = ui->listView_plugins->model()->data(selectionModel->currentIndex(), Qt::UserRole).value<Plugin const *>();
-        if (NULL != plugin)
+        if (nullptr != plugin)
             hasConfigDialog = plugin->iPlugin()->flags().testFlag(IUKUIPanelPlugin::HaveConfigDialog);
     }
 

@@ -146,7 +146,7 @@ int DefAppMatCommand::run(const QStringList & /*arguments*/)
         XdgMimeApps apps;
         const QString mimeType = data.mimeTypes.constFirst();
         XdgDesktopFile *defApp = apps.defaultApp(mimeType);
-        if (defApp != NULL) {
+        if (defApp != nullptr) {
             std::cout << qPrintable(XdgDesktopFile::id(defApp->fileName())) << "\n";
             delete defApp;
         } else {

@@ -35,7 +35,7 @@ namespace UKUi {
 LinuxBackend::LinuxBackend(QObject *parent):VirtualBackEnd(parent)
 {
     maxBacklight = ukui_backlight_backend_get_max();
-    backlightStream = NULL;
+    backlightStream = nullptr;
     if( isBacklightAvailable() ) {
         char *driver = ukui_backlight_backend_get_driver();
         fileSystemWatcher = new QFileSystemWatcher(this);
@@ -79,7 +79,7 @@ void LinuxBackend::setBacklight(int value)
 {
     if( ! isBacklightAvailable() )
         return;
-    if( backlightStream == NULL ) {
+    if( backlightStream == nullptr ) {
         FILE *stream = ukui_backlight_backend_get_write_stream();
         backlightStream = new QTextStream(stream);
         // Close stream after 60 seconds
@@ -92,9 +92,9 @@ void LinuxBackend::setBacklight(int value)
 
 void LinuxBackend::closeBacklightStream()
 {
-    if( backlightStream != NULL ) {
+    if( backlightStream != nullptr ) {
         delete backlightStream;
-        backlightStream = NULL;
+        backlightStream = nullptr;
     }
 }
 

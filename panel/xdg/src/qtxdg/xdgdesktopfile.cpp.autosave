@@ -1402,7 +1402,7 @@ QString findDesktopFile(const QString& desktopName)
 XdgDesktopFile* XdgDesktopFileCache::getFile(const QString& fileName)
 {
     if (fileName.isEmpty())
-        return NULL;
+        return nullptr;
 
     if (instance().m_fileCache.contains(fileName))
     {
@@ -1416,7 +1416,7 @@ XdgDesktopFile* XdgDesktopFileCache::getFile(const QString& fileName)
         // Search desktop file ..................
         file = findDesktopFile(fileName);
         if (file.isEmpty())
-            return NULL;
+            return nullptr;
     }
     else
     {
@@ -1436,7 +1436,7 @@ XdgDesktopFile* XdgDesktopFileCache::getFile(const QString& fileName)
         }
         else
         {
-            return NULL;
+            return nullptr;
         }
     }
     else
@@ -1641,7 +1641,7 @@ XdgDesktopFile* XdgDesktopFileCache::load(const QString& fileName)
         return desktopFile;
 
     delete desktopFile;
-    return NULL;
+    return nullptr;
 }
 
 

@@ -64,13 +64,13 @@ public:
 
     static QPixmap generatePixmap(const QPixmap &pixmap,
                                   const QStyleOption *option,
-                                  const QWidget *widget = NULL,
+                                  const QWidget *widget = nullptr,
                                   bool force = false,
                                   EffectMode mode = HighlightOnly);
     static QPixmap filledSymbolicColoredPixmap(const QPixmap &source, const QColor &baseColor);
     static QPixmap drawSymbolicColoredPixmap(const QPixmap &source);
 private:
-    explicit HighLightEffect(QObject *parent = NULL);
+    explicit HighLightEffect(QObject *parent = nullptr);
 
 
 };

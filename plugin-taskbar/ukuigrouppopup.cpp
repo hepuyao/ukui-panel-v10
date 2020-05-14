@@ -76,7 +76,7 @@ void UKUIGroupPopup::dropEvent(QDropEvent *event)
     stream >> temp;
     WId window = (WId) temp;
 
-    UKUITaskButton *button = NULL;
+    UKUITaskButton *button = nullptr;
     int oldIndex(0);
     // get current position of the button being dragged
     for (int i = 0; i < layout()->count(); i++)
@@ -90,7 +90,7 @@ void UKUIGroupPopup::dropEvent(QDropEvent *event)
         }
     }
 
-    if (button == NULL)
+    if (button == nullptr)
         return;
 
     int newIndex = -1;

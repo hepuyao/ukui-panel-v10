@@ -34,8 +34,8 @@
 
 ConfigPanelDialog::ConfigPanelDialog(UKUIPanel *panel, QWidget *parent):
     UKUi::ConfigDialog(tr("Configure Panel"), panel->settings(), parent),
-    mPanelPage(NULL),
-    mPluginsPage(NULL)
+    mPanelPage(nullptr),
+    mPluginsPage(nullptr)
 {
     setAttribute(Qt::WA_DeleteOnClose);
 

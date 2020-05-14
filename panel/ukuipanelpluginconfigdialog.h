@@ -39,8 +39,8 @@ class UKUI_PANEL_API UKUIPanelPluginConfigDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit UKUIPanelPluginConfigDialog(PluginSettings &settings, QWidget *parent = NULL);
-    explicit UKUIPanelPluginConfigDialog(PluginSettings *settings, QWidget *parent = NULL) : UKUIPanelPluginConfigDialog(*settings, parent) {}
+    explicit UKUIPanelPluginConfigDialog(PluginSettings &settings, QWidget *parent = nullptr);
+    explicit UKUIPanelPluginConfigDialog(PluginSettings *settings, QWidget *parent = nullptr) : UKUIPanelPluginConfigDialog(*settings, parent) {}
     virtual ~UKUIPanelPluginConfigDialog();
 
     PluginSettings &settings() const;

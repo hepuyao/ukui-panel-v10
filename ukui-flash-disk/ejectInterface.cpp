@@ -17,8 +17,8 @@
  */
 #include "ejectInterface.h"
 
-ejectInterface::ejectInterface(QWidget *parent,QString mount_name) : QWidget(parent),eject_image_label(NULL),show_text_label(NULL),
-    mount_name_label(NULL)
+ejectInterface::ejectInterface(QWidget *parent,QString mount_name) : QWidget(parent),eject_image_label(nullptr),show_text_label(nullptr),
+    mount_name_label(nullptr)
 {
 //interface layout
     EjectScreen = qApp->primaryScreen();

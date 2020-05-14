@@ -32,7 +32,7 @@
 class PluginSettingsFactory
 {
 public:
-    static PluginSettings * create(UKUi::Settings *settings, const QString &group, QObject *parent = NULL);
+    static PluginSettings * create(UKUi::Settings *settings, const QString &group, QObject *parent = nullptr);
 };
 
 #endif //PLUGIN_SETTINGS_P_H

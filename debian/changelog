@@ -1,10 +1,8 @@
-ukui-panel (2.0.3-1) unstable; urgency=medium
+ukui-panel (2.0.6-2kylin2) v100; urgency=medium
 
-  * New upstream bugfix-only release.
-  * debian/control:
-    - Update the vcs location.
+  * Redebuild for v10
 
- -- handsome_feng <jianfengli@ubuntukylin.com>  Mon, 23 Mar 2020 12:35:10 +0800
+ -- hepuyao <hepuyao@kylinos.cn>  Mon, 23 Mar 2020 12:35:10 +0800
 
 ukui-panel (2.0.2-1) unstable; urgency=medium
 

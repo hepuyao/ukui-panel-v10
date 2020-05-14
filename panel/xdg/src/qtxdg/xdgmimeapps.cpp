@@ -29,7 +29,7 @@
 #include <QDebug>
 
 XdgMimeAppsPrivate::XdgMimeAppsPrivate()
-    : mBackend(NULL)
+    : mBackend(nullptr)
 {
 }
 
@@ -123,7 +123,7 @@ XdgDesktopFile *XdgMimeApps::defaultApp(const QString &mimeType)
 {
     Q_D(XdgMimeApps);
     if (mimeType.isEmpty())
-        return NULL;
+        return nullptr;
 
     QMutexLocker locker(&d->mutex);
     return d->mBackend->defaultApp(mimeType);

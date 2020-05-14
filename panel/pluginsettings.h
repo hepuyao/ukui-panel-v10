@@ -85,7 +85,7 @@ Q_SIGNALS:
     void settingsChanged();
 
 private:
-    explicit PluginSettings(UKUi::Settings *settings, const QString &group, QObject *parent = NULL);
+    explicit PluginSettings(UKUi::Settings *settings, const QString &group, QObject *parent = nullptr);
 
 private:
     QScopedPointer<PluginSettingsPrivate> d_ptr;

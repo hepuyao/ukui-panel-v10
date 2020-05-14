@@ -77,7 +77,7 @@ static const char *sysfs_backlight_dir = "/sys/class/backlight";
 int ukui_backlight_backend_get()
 {
     char *driver = ukui_backlight_backend_get_driver();
-    if( driver == NULL ) {
+    if( driver == nullptr ) {
         return -1;
     }
     int value = read_backlight(driver);
@@ -88,7 +88,7 @@ int ukui_backlight_backend_get()
 int ukui_backlight_backend_get_max()
 {
     char *driver = ukui_backlight_backend_get_driver();
-    if( driver == NULL ) {
+    if( driver == nullptr ) {
         return -1;
     }
     int value = read_max_backlight(driver);
@@ -106,7 +106,7 @@ FILE *ukui_backlight_backend_get_write_stream()
 int ukui_backlight_is_backlight_off()
 {
     char *driver = ukui_backlight_backend_get_driver();
-    if( driver == NULL ) {
+    if( driver == nullptr ) {
         return -1;
     }
     int bl_power = read_bl_power(driver);
@@ -117,7 +117,7 @@ int ukui_backlight_is_backlight_off()
 static int read_int(const char *file, const char *driver)
 {
     FILE *in = open_driver_file(file, driver, "r");
-    if( in == NULL ) {
+    if( in == nullptr ) {
         return -1;
     }
     int value;
@@ -138,12 +138,12 @@ static FILE* open_driver_file(const char *file, const char *driver, const char *
 
     if( res <= 0 || res >= PATH_MAX ) {
         path[0] = '\0';
-        return NULL;
+        return nullptr;
     }
 
     FILE *ret = fopen(path, mode);
 
-    if( ret == NULL ) {
+    if( ret == nullptr ) {
         fprintf(stderr, "Couldn't open %s: %s\n", path, strerror(errno));
     }
 
@@ -178,21 +178,21 @@ char *ukui_backlight_backend_get_driver()
     char type[1024];
 
     for(n=0;n<N_BACKLIGHT;n++)
-        drivers[n] = NULL;
+        drivers[n] = nullptr;
 
-    if ((dirp = opendir(sysfs_backlight_dir)) == NULL) {
+    if ((dirp = opendir(sysfs_backlight_dir)) == nullptr) {
         fprintf(stderr, "Couldn't open %s: %s\n", sysfs_backlight_dir, strerror(errno));
-        return NULL;
+        return nullptr;
     }
 
     do {
         errno = 0;
-        if ((dp = readdir(dirp)) != NULL) {
+        if ((dp = readdir(dirp)) != nullptr) {
             if( !strcmp(dp->d_name, ".") || !strcmp(dp->d_name, "..") )
                 continue;
             driver = dp->d_name;
             FILE *in = open_driver_file("type", driver, "r");
-            if( in == NULL )
+            if( in == nullptr )
                 continue;
             // the maximum field width does not include '\0'!
             int ok = fscanf(in, "%1023s", type);
@@ -210,7 +210,7 @@ char *ukui_backlight_backend_get_driver()
                     drivers[OTHER] = strdup(driver);
             }
         }
-    } while (dp != NULL);
+    } while (dp != nullptr);
 
     closedir(dirp);
 
@@ -218,15 +218,15 @@ char *ukui_backlight_backend_get_driver()
         fprintf(stderr, "Error reading directory %s: %s\n", sysfs_backlight_dir, strerror(errno));
     }
 
-    driver = NULL;
+    driver = nullptr;
     for(n=0;n<N_BACKLIGHT;n++) {
-        if( drivers[n] != NULL && driver == NULL )
+        if( drivers[n] != nullptr && driver == nullptr )
             driver = drivers[n];
         else
             free(drivers[n]);
     }
 
-    if( driver == NULL )
+    if( driver == nullptr )
     {
         fprintf(stderr, "Error: %s is empty (no driver found).\n", sysfs_backlight_dir);
     }
