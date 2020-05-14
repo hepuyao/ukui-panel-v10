@@ -210,7 +210,7 @@ if(STARTMENU_PLUGIN)
     add_subdirectory(plugin-startmenu)
 endif(STARTMENU_PLUGIN)
 
-setByDefault(NIGHTMODE_PLUGIN Yes)
+#setByDefault(NIGHTMODE_PLUGIN Yes)
 if(NIGHTMODE_PLUGIN)
     list(APPEND ENABLED_PLUGINS "nightmode")
     add_subdirectory(plugin-nightmode)

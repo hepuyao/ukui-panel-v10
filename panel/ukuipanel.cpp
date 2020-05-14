@@ -1305,6 +1305,19 @@ void UKUIPanel::showPopupMenu(Plugin *plugin)
                    this, SLOT(panelReset())
                   )->setDisabled(mLockPanel);
 */
+    if(QFileInfo::exists(QString("/usr/bin/ukui-about")))
+    {
+        QAction *about;
+        about=new QAction(this);
+        about->setText("关于麒麟");
+        menu->addAction(about);
+        connect(about,&QAction::triggered, [this] {
+            QProcess *process =new QProcess(this);
+            process->startDetached("/usr/bin/ukui-about");
+        });
+
+    }
+
 #ifdef DEBUG
     menu->addSeparator();
     menu->addAction("Exit (debug only)", qApp, SLOT(quit()));

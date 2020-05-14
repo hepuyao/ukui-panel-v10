@@ -1,4 +1,10 @@
-ukui-panel (2.0.6-2kylin2) v100; urgency=medium
+ukui-panel (2.0.6-2kylin5) v100; urgency=medium
+
+  * close module nightmode
+
+ -- hepuyao <hepuyao@kylinos.cn>  Thu, 14 May 2020 18:02:22 +0800
+
+ukui-panel (2.0.6-2kylin3) v100; urgency=medium
 
   * Redebuild for v10
 
