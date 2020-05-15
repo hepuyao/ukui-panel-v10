@@ -542,6 +542,14 @@ void IndicatorCalendar::initializeCalendar()
     QString lunarOrsolar;
     QString firstDay;
     int iScreenHeight = QApplication::screens().at(0)->size().height();
+    if(iScreenHeight > WEBVIEW_MAX_HEIGHT)
+    {
+        mViewHeight = WEBVIEW_MAX_HEIGHT;
+    }
+    else
+    {
+        mViewHeight = WEBVIEW_MIN_HEIGHT;
+    }
     if(QGSettings::isSchemaInstalled(id))
     {
         if(!gsettings)
